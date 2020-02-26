@@ -1,5 +1,8 @@
 import axios from 'axios'
-import warehouse from './services/WarehouseApi'
+import warehouse from './remote/warehouse-api'
+import option from './local/option-api'
+import encrypt from './local/encrypt-api'
+import auth from './remote/authorization-api'
 
 // 设置默认的请求时常为10s
 axios.defaults.timeout = 10000
@@ -18,26 +21,9 @@ axios.interceptors.response.use((res) => {
   return Promise.reject(error)
 })
 
-/**
- * 此方法会在main.js中注册至this.$http中
- * @param url
- * @param param
- * @returns {Promise<any>}
- */
-export function fetchGet (url, param) {
-  return new Promise((resolve, reject) => {
-    axios.get(url, {
-      params: param
-    }).then(response => {
-      resolve(response.data)
-    }, err => {
-      reject(err)
-    }).catch((error) => {
-      reject(error)
-    })
-  })
-}
-
 export default {
-  warehouse
+  warehouse,
+  option,
+  encrypt,
+  auth
 }

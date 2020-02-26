@@ -17,3 +17,4 @@ Mock.mock(/\/product\/.*/, 'get', o => {
   let id = /\/product\/(.*)/.exec(o.url)[1]
   return json.find(book => id === book.id.toString())
 })
+Mock.mock('/auth', 'post', o => loadJSON(o, 'authorization.json'))

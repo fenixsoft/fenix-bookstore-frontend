@@ -1,13 +1,15 @@
 <template>
   <div class="bg">
     <div class="dialog dialog-shadow">
-        <LoginForm v-if="!registration" v-on:changeMode="registration = !registration"/>
-        <RegistrationForm v-if="registration" v-on:changeMode="registration = !registration"/>
+      <LoginForm v-if="!registrationMode" v-on:changeMode="registrationMode = !registrationMode" @login="login"/>
+      <RegistrationForm v-if="registrationMode" v-on:changeMode="registrationMode = !registrationMode"/>
     </div>
   </div>
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
+import api from '@/api'
 import LoginForm from '../components/login/LoginForm'
 import RegistrationForm from '../components/login/RegistrationForm'
 
@@ -19,12 +21,37 @@ export default {
   },
   data () {
     return {
-      registration: false
+      // 表示登陆还是注册状态
+      registrationMode: false
+    }
+  },
+  computed: {
+    /**
+     *  记录登陆成功后要转向的地址，该地址由全局路由拦截器自动设置，如果没设置，默认转向首页
+     **/
+    nextPath () {
+      return this.$route.query.redirect ? this.$route.query.redirect : '/'
     }
   },
   methods: {
+    ...mapMutations('session', ['setupSession']),
+    async login (authorization) {
+      try {
+        let {data} = await api.auth.login(authorization)
+        if (data.code === api.auth.constant.LOGIN_SUCCESS) {
+          data.rememberMe = authorization.rememberMe
+          data.location = authorization.location
+          this.setupSession(data)
+          this.$router.push(this.nextPath)
+        } else {
+          alert(data.message)
+        }
+      } catch (e) {
+        alert(e.message)
+      }
+    },
     register () {
-      this.registration = true
+      this.registrationMode = true
     }
   }
 }

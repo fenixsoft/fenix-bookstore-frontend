@@ -1,0 +1,8 @@
+{
+  "code": 0,
+  "id": 1,
+  "username": "icyfenix",
+  "authorities": ["ADMIN","USER"],
+  "expires": 2556115199,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJpY3lmZW5peCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSIsImRlbCJdLCJleHAiOjI1NTYxMTUxOTksImF1dGhvcml0aWVzIjpbIkFETUlOIiwiVVNFUiJdLF0sImp0aSI6IjBkZmQzMTA0LTMxZDItNGI5MC04ODE4LTg5Y2Q4ZWUxMzdiZiIsImNsaWVudF9pZCI6IndlYmFwcCJ9DQo.ZjQ4NTViN2Q4OWMxNjAyZjA3MWMxMzFkYTZlOGMz"
+}
