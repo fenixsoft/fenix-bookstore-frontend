@@ -1,52 +1,51 @@
 <template>
-  <div class="nav-bar-container">
-    <div class="left-action-bar">
-      <img src="@/assets/logo-gray-light.png" class="icon" @click="navigateIndex">
-    </div>
-    <el-menu
-      :default-active="activeIndex"
-      mode="horizontal"
-      @select="handleMenuSelect"
-      class="nav-bar"
-      text-color="#CCCCCC"
-      background-color="#292A2D"
-      active-text-color="#FFFFFF">
-      <el-menu-item index="/">凤凰书社</el-menu-item>
-      <el-submenu index="2">
-        <template slot="title">我的工作台</template>
-        <el-menu-item index="2-1">选项1</el-menu-item>
-        <el-menu-item index="2-2">选项2</el-menu-item>
-        <el-menu-item index="2-3">选项3</el-menu-item>
-        <el-submenu index="2-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="2-4-1">选项1</el-menu-item>
-          <el-menu-item index="2-4-2">选项2</el-menu-item>
-          <el-menu-item index="2-4-3">选项3</el-menu-item>
+  <div>
+    <div class="nav-bar-container">
+      <div class="left-action-bar">
+        <img src="@/assets/logo-gray-light.png" class="icon" @click="navigateIndex">
+      </div>
+      <el-menu :default-active="activeIndex" mode="horizontal" @select="handleMenuSelect" :router="true" class="nav-bar"
+               text-color="#CCCCCC" background-color="#292A2D" active-text-color="#FFFFFF">
+        <el-menu-item index="/">凤凰书社</el-menu-item>
+        <el-submenu index="2">
+          <template slot="title">我的工作台</template>
+          <el-menu-item index="2-1">选项1</el-menu-item>
+          <el-menu-item index="2-2">选项2</el-menu-item>
+          <el-menu-item index="2-3">选项3</el-menu-item>
+          <el-submenu index="2-4">
+            <template slot="title">选项4</template>
+            <el-menu-item index="2-4-1">选项1</el-menu-item>
+            <el-menu-item index="2-4-2">选项2</el-menu-item>
+            <el-menu-item index="2-4-3">选项3</el-menu-item>
+          </el-submenu>
         </el-submenu>
-      </el-submenu>
-      <el-menu-item index="3" disabled>消息中心</el-menu-item>
-      <el-menu-item index="detail">订单管理</el-menu-item>
-    </el-menu>
-    <div class="right-action-bar">
-      <div class="right-action">
-        <i class="el-icon-user"></i>
-        <i class="el-icon-goods"></i>
+        <el-menu-item index="3" disabled>消息中心</el-menu-item>
+        <el-menu-item index="/detail/1">购物车</el-menu-item>
+      </el-menu>
+      <div class="right-action-bar">
+        <div class="right-action">
+          <UserInformation/>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import UserInformation from './UserInformation'
+
 export default {
+  components: {
+    UserInformation
+  },
   data () {
     return {
-      activeIndex: '1'
+      activeIndex: '/'
     }
   },
   methods: {
     handleMenuSelect (key, keyPath) {
-      console.log(key, keyPath)
-      this.$router.push(key)
+      // this.$router.push(key)
     },
     navigateIndex () {
       this.$router.push('/')
@@ -85,7 +84,7 @@ export default {
   }
 
   .right-action {
-    padding-right: 10px;
+    padding: 9px 15px;
   }
 
   .right-action > i {

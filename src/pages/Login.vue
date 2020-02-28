@@ -34,20 +34,19 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('session', ['setupSession']),
+    ...mapMutations('user', ['setupSession']),
+    /**
+     * 处理登录表单中的登录事件
+     */
     async login (authorization) {
-      try {
-        let {data} = await api.auth.login(authorization)
-        if (data.code === api.auth.constant.LOGIN_SUCCESS) {
-          data.rememberMe = authorization.rememberMe
-          data.location = authorization.location
-          this.setupSession(data)
-          this.$router.push(this.nextPath)
-        } else {
-          alert(data.message)
-        }
-      } catch (e) {
-        alert(e.message)
+      let {data} = await api.auth.login(authorization.name, authorization.password)
+      if (data.code === api.constants.REMOTE_OPERATION_SUCCESS) {
+        data.rememberMe = authorization.rememberMe
+        data.language = authorization.language
+        this.setupSession(data)
+        this.$router.push(this.nextPath)
+      } else {
+        throw new Error(data.message)
       }
     },
     register () {

@@ -13,9 +13,14 @@
           <template slot="prepend"><i class="el-icon-unlock"></i></template>
         </el-input>
       </el-form-item>
-      <el-input placeholder="请输入地区（未来做国际化预留）" pass v-model="authorization.location">
-        <template slot="prepend"><i class="el-icon-map-location"></i></template>
-      </el-input>
+      <el-select placeholder="请选择语言" style="width: 370px" v-model="authorization.language">
+        <el-option label="          中文" value="zhCN"/>
+        <el-option label="          英文（无效，国际化预留）" value="enUS"/>
+        <template slot="prefix">
+          <div class="select-prefix"><i class="el-icon-map-location"></i></div>
+        </template>
+      </el-select>
+      <template slot="prepend"><i class="el-icon-map-location"></i></template>
       <div class="actions">
         <el-checkbox v-model="authorization.rememberMe" class="check">
           自动登录
@@ -48,8 +53,8 @@ export default {
       authorization: {
         name: '',
         password: '',
-        location: '',
-        rememberMe: true
+        language: 'zhCN',
+        rememberMe: false
       },
       rules: {
         name: [
@@ -115,6 +120,24 @@ export default {
     float: left;
     display: inline-block;
     padding-left: 10px
+  }
+
+  .select-prefix {
+    /*border-right: 0;*/
+    border: 1px solid #DCDFE6;
+    background-color: #F5F7FA;
+    color: #909399;
+    vertical-align: middle;
+    display: table-cell;
+    position: relative;
+    border-radius: 4px;
+    padding: 0 20px;
+    height: 38px;
+    left: -5px;
+  }
+
+  i {
+    font-size: 18px;
   }
 
 </style>

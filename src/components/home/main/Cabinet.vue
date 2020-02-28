@@ -13,7 +13,8 @@
           <div id="actions">
             <el-button icon="el-icon-goods" circle></el-button>
             <el-button icon="el-icon-shopping-cart-full" circle></el-button>
-            <el-button icon="el-icon-star-off" circle></el-button>
+            <el-button :icon="isFavorite(book.id) ? 'el-icon-star-on' : 'el-icon-star-off'" circle
+                       @click="updateFavorite(book.id)"></el-button>
           </div>
         </div>
       </el-col>
@@ -23,6 +24,7 @@
 
 <script>
 import api from '@/api'
+import {mapState, mapMutations} from 'vuex'
 
 export default {
   name: 'Cabinet',
@@ -31,10 +33,20 @@ export default {
       books: []
     }
   },
+  computed: {
+    ...mapState('user', ['favorite'])
+  },
   async created () {
     this.books = (await api.warehouse.getAllProducts()).data
   },
   methods: {
+    ...mapMutations('user', ['addFavorite', 'removeFavorite']),
+    isFavorite (id) {
+      return this.favorite.includes(id)
+    },
+    updateFavorite (id) {
+      this.isFavorite(id) ? this.removeFavorite(id) : this.addFavorite(id)
+    },
     loadDetail (id) {
       this.$router.push(`/detail/${id}`)
     },

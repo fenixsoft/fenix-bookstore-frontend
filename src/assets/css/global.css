@@ -1,0 +1,44 @@
+body {
+  margin: 0px;
+  background-color: #ededed;
+  overflow-x: hidden;
+  /* 解决el-images为了预览模式设置hidden导致滚动条消失的问题 */
+  overflow-y: auto !important;
+}
+
+/* 以下为对Element-UI部分样式的调整 */
+
+.el-main, .el-header, .el-footer {
+  padding: 0;
+}
+
+.el-main {
+  display: flex;
+  justify-content: center;
+}
+
+.el-card__header {
+  background-color: #FAFAFA;
+}
+
+.el-input-number.is-controls-right[class*=small] [class*=decrease], .el-input-number.is-controls-right[class*=small] [class*=increase] {
+  line-height: 18px;
+}
+
+.el-input--small .el-input__inner {
+  height: 39px;
+  line-height: 39px;
+}
+
+.slide-fade-enter-active {
+  transition: all .5s ease;
+}
+
+.slide-fade-leave-active {
+  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}

@@ -1,7 +1,7 @@
 <template>
 
   <el-container>
-    <el-header>
+    <el-header style="height: auto">
       <NavigationBar/>
     </el-header>
     <el-main>

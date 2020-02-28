@@ -1,15 +1,10 @@
-import * as types from '../constant' // types目录下的mutations函数的常量名
 const state = {
-  recommendList: []
+  favorite: []
 }
 
 const getters = {}
 
-const mutations = {
-  [types.PRODUCTS_SET_PRODUCT] (state, products) { // 第一个参数是state 可以修改state 将请求回来的数据保存在state中
-    state.recommendList = products
-  }
-}
+const mutations = {}
 
 const actions = {
   // vuex 给actions 的 commit 提交到 mutations => state

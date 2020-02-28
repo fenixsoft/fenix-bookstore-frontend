@@ -39,7 +39,7 @@
 
 <script>
 import api from '@/api'
-import Checkstand from '@/components/home/main/Checkstand'
+import Checkstand from '@/components/home/detail/Checkstand'
 
 export default {
   name: 'DetailPage',

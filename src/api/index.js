@@ -3,12 +3,15 @@ import warehouse from './remote/warehouse-api'
 import option from './local/option-api'
 import encrypt from './local/encrypt-api'
 import auth from './remote/authorization-api'
+import account from './remote/account-api'
+import constants from './remote/constants'
 
 // 设置默认的请求时常为10s
 axios.defaults.timeout = 10000
 
 /**
- * 响应拦截器，将返回非200状态的HTTP CODE和无相应均调用reject
+ * 响应拦截器
+ * 将返回非200状态的HTTP CODE和无响应均调用promise reject
  */
 axios.interceptors.response.use((res) => {
   if (res.status !== 200) {
@@ -22,8 +25,12 @@ axios.interceptors.response.use((res) => {
 })
 
 export default {
+  constants,
+  // remote
   warehouse,
+  account,
+  auth,
+  // local
   option,
-  encrypt,
-  auth
+  encrypt
 }

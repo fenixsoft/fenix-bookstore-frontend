@@ -27,7 +27,12 @@ export default {
   },
 
   getSession () {
-    return JSON.parse(LOCAL_SESSION_KEY)
+    // 如果本地缓存中的Session被破坏了，就返回空对象
+    try {
+      return JSON.parse(localStorage.getItem(LOCAL_SESSION_KEY))
+    } catch (e) {
+      return {}
+    }
   },
 
   removeSession () {

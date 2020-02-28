@@ -4,6 +4,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import store from './store'
 import router from './router'
+import errorPlugin from './plugins/errorhandler-plugin'
 
 /**
  * 默认在开发模式中启用mock.js代替服务端请求
@@ -14,6 +15,12 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 Vue.use(ElementUI)
+Vue.use(errorPlugin, {
+  errorHandler: (error, vm, info) => {
+    console.error(error)
+    store.commit('notification/setException', error)
+  }
+})
 
 Vue.config.productionTip = false
 
