@@ -1,7 +1,7 @@
 {
   "name": "bookstore",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "The Fenix Project Client Demo",
   "author": "icyfenix <icyfenix@gmail.com>",
   "private": true,
   "scripts": {
@@ -11,7 +11,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@chenfengyuan/vue-qrcode": "^1.0.2",
     "crypto": "^1.0.1",
+    "default-passive-events": "^1.0.10",
     "v-distpicker": "^1.2.2",
     "vue": "^2.5.2"
   },

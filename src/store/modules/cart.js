@@ -1,160 +1,127 @@
-import * as types from '../constant'
+import api from '@/api'
 
+/**
+ * 购物车状态数据
+ * 一共存有三类状态：
+ *  - 购物车元素（items）
+ *  - 结算单（settlement），即本次打算购买的内容，以及派送信息
+ *  - 支付单（payment），将结算单发送到服务端后，服务端返回有货物、可派送，此时包含支付二维码等付款信息
+ * 购物车与结算账单中存储的数组元素，内容上与商品对象相同，唯一只是多了一个表示数量的amount字段
+ */
 const state = {
-  items: [ // 购物车需要自己的状态 购物列表
-    {productid: '11137', quantity: 1, checkoutStatus: false}, // 购买状态
-    {productid: '8750', quantity: 1, checkoutStatus: false}
-  ]
-}
-
-const getters = {
-  // 返回购物车商品列表完整信息
-  cartProducts: (state, getters, rootState) => {
-    if (!state.items.length) return [] // map不会对空数组进行检测 map不会改变原始数组
-    return state.items.map(({productid, quantity, checkoutStatus}) => { // map()方法返回一个新数组，数组中的元素为原始数组元素调用函数处理的后值。
-      const product = rootState.products.recommendList.find(product => product.productid === productid) // 拿到items中的数据去查阅products中的数据, rootState(根节点状态)参数可以拿到别的模块的state状态
-      if (!product) return {} // 如果此时的数据还没有请求回来 就返回空 不渲染
-      return {
-        src: product.image, // product的图片地址
-        name: product.name, // product的名字
-        price: product.price, // product的单价
-        productid, // product的id
-        quantity, // product的数量，默认为1
-        simpleTotal: quantity * product.price, // 单项product的总价价
-        checkoutStatus: checkoutStatus // product的选中状态
-      }
-    })
+  // 购物车里的商品
+  // 在购物车中的与在结算账单中含义并不相同，毕竟不是所有人都能随意清空购物车
+  items: [],
+  // 结算账单，这个是进入结算页面之前设置好的
+  settlement: {
+    // 账单配送地址
+    purchase: {
+      name: '',
+      telephone: '',
+      delivery: true,
+      address: {province: '广东省', city: '广州市', area: '海珠区'},
+      location: ''
+    },
+    // 账单内容
+    items: []
   },
-  // 返回选中商品的总价
-  cartTotalPrice: (state, getters) => {
-    return getters.cartProducts.reduce((total, product) => {
-      if (product.checkoutStatus) {
-        return total + product.simpleTotal
-      }
-      return total
-    }, 0)
-  },
-  // 返回所有商品总价,不管有没有选中
-  allPrice: (state, getters) => {
-    return getters.cartProducts.reduce((total, product) => {
-      return total + product.simpleTotal
-    }, 0)
-  },
-  // 返回所有商品总数量,不管有没有选中
-  allProducts: (state, getters) => {
-    return getters.cartProducts.reduce((total, product) => {
-      return total + product.quantity
-    }, 0)
-  },
-  // 返回所有选中的商品数量
-  allSelectProducts: (state, getters) => {
-    return getters.cartProducts.reduce((total, product) => {
-      if (product.checkoutStatus) {
-        return total + product.quantity
-      }
-      return total
-    }, 0)
-  },
-  // 返回所有商品条数
-  allProductsItem: (state) => {
-    return state.items.length
-  },
-  // 返回商品是否全选 是返回true 否则false
-  isSelectAll: (state) => {
-    if (!state.items.length) return false
-    return state.items.every(item => { // every() 不会对空数组进行检测
-      return item.checkoutStatus === true
-    })
-  },
-  // 返回是否有选中的商品 是返回true 否则false
-  hasSelect: (state) => {
-    if (!state.items.length) return false
-    return state.items.some(item => { // some() 不会对空数组进行检测
-      return item.checkoutStatus === true
-    })
+  // 支付信息，由服务端返回，包括支付结果Code，支付单ID和用于付款的二维码
+  payment: {
+    code: -1,
+    id: '',
+    qrcode: '',
+    expires: 0
   }
 }
 
+const getters = {}
+
 const mutations = {
-  // 添加一条商品的方法
-  [types.CART_ADD_PRODUCT_TO_CART] (state, {productid}) {
-    state.items.unshift({
-      productid,
-      quantity: 1,
-      checkoutStatus: false
-    })
-  },
-  // 删除一条商品的方法
-  [types.CART_DEL_PRODUCT_TO_CART] (state, productid) {
-    state.items.forEach((item, index) => {
-      if (item.productid === productid) {
-        state.items.splice(index, 1)
-      }
-    })
-  },
-  // 增加一条商品中商品数量的方法
-  [types.CART_ADD_PRODUCT_QUANTITY] (state, productid) {
-    const cartItem = state.items.find(item => item.productid === productid)
-    cartItem.quantity++
-  },
-  // 减少一条商品中商品数量的方法
-  [types.CART_DEL_PRODUCT_QUANTITY] (state, productid) {
-    const cartItem = state.items.find(item => item.productid === productid)
-    if (cartItem.quantity > 1) { // 商品数量大于1时才能减少
-      cartItem.quantity--
+  /**
+   * 调整在购物车中指定产品的数量
+   * 如购物车中已有该产品则直接修改数量，如果没有，将对象的浅拷贝存入购物车
+   * 数量可为负数，用于对购物车中产品的调减，如产品调减后结果小于零，则直接将数量归零
+   */
+  adjustCartItems (state, product) {
+    let item = state.items.find(item => item.id === product.id)
+    if (item) {
+      item.amount = (item.amount + product.amount) || 0
     } else {
-      cartItem.quantity = 1
+      product.amount = product.amount || 0
+      state.items.push({...product})
     }
   },
-  // 改变单条商品的选中不选中状态的方法(单选按钮)
-  [types.CART_SET_CHECKOUT_STATUS] (state, productid) {
-    const cartItem = state.items.find(item => item.productid === productid)
-    cartItem.checkoutStatus = !cartItem.checkoutStatus
+
+  /**
+   * 添加一个商品到购物车之中
+   * 如果购物车中已经有了这个商品，就把数量加1
+   */
+  addCartItem (state, product) {
+    let item = state.items.find(i => i.id === product.id)
+    if (item) {
+      item.amount++
+    } else {
+      state.items.push({...product, amount: 1})
+    }
   },
-  // 改变所有商品的选中不选中状态的方法(全选按钮)
-  [types.CART_SET_CHECKOUT_STATUS_ALL] (state, status) {
-    state.items.forEach(item => {
-      if (!item.checkoutStatus === status) {
-        item.checkoutStatus = status
-      }
-    })
+
+  /**
+   * 删除购物车中指定产品
+   * 购物车可以存在数量为0的产品，并不会删除，如需彻底从购物车移除产品，应使用本方法
+   * 如果购物车中原本就没有该产品，则不会有任何效果
+   */
+  removeCartItem (state, id) {
+    state.items = state.items.filter(i => i.id !== id)
+  },
+
+  /**
+   * 设置结算单
+   * 外部一般不调用该方法，而是使用Actions中的setupSettlementBillWithDefaultValue
+   */
+  setupSettlementBill (state, settlement) {
+    state.settlement = settlement
+  },
+
+  /**
+   * 设置支付信息
+   * 外部一般不调用该方法，而是使用Actions中的submitSettlement
+   */
+  receivePayment (state, payment) {
+    state.payment = payment
   }
 }
 
 const actions = {
-  // 添加购物车的方法,如果此时购物车内有该条商品,就添加商品数量,否则添加商品
-  addProductToCart ({state, commit}, product) {
-    const cartItem = state.items.find(item => item.productid === product.productid)
-    if (!cartItem) {
-      commit(types.CART_ADD_PRODUCT_TO_CART, {productid: product.productid})
-    } else {
-      commit(types.CART_ADD_PRODUCT_QUANTITY, cartItem.productid)
+  /**
+   * 设置结算账单
+   * 为了便于使用，配送人、地址等信息，如果对应字段没有被设置，会取用户账号的信息信息作为默认值（即默认收件人是用户自己）
+   */
+  setupSettlementBillWithDefaultValue ({state, rootState, commit}, settlement) {
+    // 设置结算单的默认值，传入的结算单就不需要包括所有的字段
+    const defaultPurchase = {
+      name: rootState.user.account.name,
+      telephone: rootState.user.account.telephone,
+      delivery: true,
+      address: {province: '广东省', city: '广州市', area: '海珠区'},
+      location: rootState.user.account.location
     }
+    settlement.purchase = Object.assign(defaultPurchase, settlement.purchase || {})
+    commit('setupSettlementBill', Object.assign(state.settlement, settlement))
   },
-  // 购物车内删除一条商品的方法
-  delProductToCart ({commit}, productid) {
-    commit(types.CART_DEL_PRODUCT_TO_CART, productid)
-  },
-  // 添加商品数量的方法
-  addProductQuantity ({commit}, productid) {
-    commit(types.CART_ADD_PRODUCT_QUANTITY, productid)
-  },
-  // 减少商品数量的方法
-  delProductQuantity ({commit}, productid) {
-    commit(types.CART_DEL_PRODUCT_QUANTITY, productid)
-  },
-  // 切换一条商品的选中状态的方法
-  setCheckoutStatus ({commit}, productid) {
-    commit(types.CART_SET_CHECKOUT_STATUS, productid)
-  },
-  // 切换所有商品选中状态的方法
-  setCheckoutStatusAll ({commit}, status) {
-    commit(types.CART_SET_CHECKOUT_STATUS_ALL, status)
+
+  /**
+   * 提交要购买的商品和配送信息到服务端
+   * 在调用此方法之前，通常应该调用setupSettlementBillWithDefaultValue来设置VUEX中的结算单据信息
+   */
+  async submitSettlement ({state, commit}) {
+    // TODO 这里提交的数据（items数组）可以清理一下，只提交id即可
+    let {data} = await api.payment.submitSettlement(state.settlement)
+    commit('receivePayment', data)
   }
 }
 
 export default {
-  namespaced: true, // 添加命名空间
+  namespaced: true,
   state,
   getters,
   mutations,

@@ -7,20 +7,38 @@ Vue.use(Router)
 const router = new Router({
   routes: [
     {
+      // 首页框架容器
       path: '/',
       component: () => import('@/pages/home/index'),
       children: [
         {
+          // 书店首页
           path: '/',
           component: () => import('@/pages/home/MainPage')
         }, {
+          // 商品详情页
           path: '/detail/:id',
-          meta: {requireAuthentication: true},
           component: () => import('@/pages/home/DetailPage'),
           props: true
+        }, {
+          // 购物车
+          path: '/cart',
+          meta: {requireAuthentication: true},
+          component: () => import('@/pages/home/CartPage')
+        }, {
+          // 商品结算页
+          path: '/settle',
+          meta: {requireAuthentication: true},
+          component: () => import('@/pages/home/SettlementPage')
+        }, {
+          // 商品付款页
+          path: '/pay',
+          meta: {requireAuthentication: true},
+          component: () => import('@/pages/home/PaymentPage')
         }
       ]
     }, {
+      // 登录页
       path: '/login',
       name: 'Login',
       component: () => import('@/pages/Login')

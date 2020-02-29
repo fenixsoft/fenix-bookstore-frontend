@@ -3,7 +3,7 @@
     <ul class="sale_ul">
       <li>
         <label>零&nbsp;&nbsp;售&nbsp;&nbsp;价：</label>
-        <div class="sale_content price">￥{{product.price}}</div>
+        <div class="sale_content price">￥{{product.price.toFixed(2)}}</div>
       </li>
       <li>
         <label>促销信息：</label>
@@ -28,22 +28,23 @@
         <label>配&nbsp;&nbsp;送&nbsp;&nbsp;至：</label>
         <div class="sale_content">
           <v-distpicker :province="purchase.address.province" :city="purchase.address.city"
-                        :area="purchase.address.area"></v-distpicker>
+                        :area="purchase.address.area" @selected="onAddressSelected"></v-distpicker>
           <span class="address_info"><b>有货</b> 由京东发货, 并提供售后服务. 18:00前下单，预计明天送达</span>
         </div>
       </li>
     </ul>
     <div style="padding: 0 10px 0 18px; display: inline">
-      <el-input-number v-model="purchase.number" controls-position="right" :min="1" :max="10" size="small"
+      <el-input-number v-model="product.amount" controls-position="right" :min="1" :max="10" size="small"
                        style="height: 39px; line-height: 39px;"/>
     </div>
     <el-button type="danger" icon="el-icon-shopping-cart-full" @click="addCart">加入购物车</el-button>
-    <el-button type="danger" plain icon="el-icon-goods" @click="paying">立即购买</el-button>
+    <el-button type="danger" plain icon="el-icon-goods" @click="buyNow">立即购买</el-button>
   </div>
 </template>
 
 <script>
 import VDistpicker from 'v-distpicker'
+import {mapMutations, mapActions} from 'vuex'
 
 export default {
   name: 'Checkstand',
@@ -59,13 +60,44 @@ export default {
     product: Object
   },
   methods: {
+    ...mapMutations('cart', ['adjustCartItems']),
+    ...mapActions('cart', ['setupSettlementBillWithDefaultValue']),
+    /**
+     * 加入购物车
+     **/
     addCart () {
-      this.purchase.type = 'addCart'
-      this.$emit('place-order', this.purchase)
+      let payload = {
+        ...this.product,
+        amount: this.product.amount || 1
+      }
+      this.adjustCartItems(payload)
+      this.$notify({
+        title: '成功',
+        message: '恭喜你，该商品已成功添加到购物车',
+        type: 'success'
+      })
     },
-    paying () {
-      this.purchase.type = 'paying'
-      this.$emit('place-order', this.purchase)
+    /**
+     * 立即购买
+     */
+    buyNow () {
+      let payload = {
+        purchase: this.purchase,
+        items: [{
+          ...this.product,
+          amount: this.product.amount || 1
+        }]
+      }
+      this.setupSettlementBillWithDefaultValue(payload)
+      this.$router.push('/settle')
+    },
+    /**
+     * 地址选择控件的绑定事件，该控件未支持v-model
+     */
+    onAddressSelected (address) {
+      this.purchase.address.province = address.province.value
+      this.purchase.address.city = address.city.value
+      this.purchase.address.area = address.area.value
     }
   }
 }

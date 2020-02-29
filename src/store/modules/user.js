@@ -23,6 +23,7 @@ const EMPTY_ACCOUNT = () => ({
 const state = {
   session: api.option.hasSession() ? Object.assign(EMPTY_SESSION(), api.option.getSession()) : EMPTY_SESSION(),
   account: EMPTY_ACCOUNT(),
+  // 收藏夹，只存在本地，暂时没有什么用
   favorite: []
 }
 
@@ -31,7 +32,7 @@ const getters = {
    * 检查授权是否有效
    * 生效要求：持有JWT令牌，且并未超出令牌期限
    */
-  isAuthorized: state => state.session.token && state.session.expires > (new Date().getTime() / 1000)
+  isAuthorized: state => state.session.token && state.session.expires > new Date().getTime()
 }
 
 const mutations = {

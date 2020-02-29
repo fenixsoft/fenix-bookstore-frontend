@@ -1,10 +1,11 @@
 import axios from 'axios'
+import constants from './remote/constants'
 import warehouse from './remote/warehouse-api'
 import option from './local/option-api'
 import encrypt from './local/encrypt-api'
 import auth from './remote/authorization-api'
 import account from './remote/account-api'
-import constants from './remote/constants'
+import payment from './remote/payment-api'
 
 // 设置默认的请求时常为10s
 axios.defaults.timeout = 10000
@@ -30,6 +31,7 @@ export default {
   warehouse,
   account,
   auth,
+  payment,
   // local
   option,
   encrypt

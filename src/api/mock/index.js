@@ -5,11 +5,14 @@ const MockJS = require('mockjs')
  */
 const loadJSON = (options, file) => {
   const json = require('./json/' + file)
-  console.debug(`请求：${options.type} ${options.url}：`, options)
-  console.debug('结果：', json)
+  console.debug(`REQUEST：${options.type} ${options.url}：`, options)
+  console.debug('RESPONSE：', json)
   return json
 }
 
+/**
+ * 被Mock的各个请求
+ */
 MockJS.mock('/products', 'get', o => loadJSON(o, 'products.json'))
 MockJS.mock('/advertisements', 'get', o => loadJSON(o, 'advertisements.json'))
 MockJS.mock(/\/product\/.*/, 'get', o => {
@@ -21,3 +24,8 @@ MockJS.mock('/auth', 'post', o => loadJSON(o, 'authorization.json'))
 MockJS.mock(/\/account\/.*/, 'get', o => loadJSON(o, 'account.json'))
 MockJS.mock('/account', 'post', {code: 0})
 MockJS.mock('/account', 'put', {code: 0})
+MockJS.mock('/settlement', 'post', o => {
+  let json = loadJSON(o, 'settlement.json')
+  json.expires = new Date().getTime() + (1000 * 60 * 3)
+  return json
+})

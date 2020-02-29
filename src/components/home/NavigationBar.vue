@@ -2,25 +2,50 @@
   <div>
     <div class="nav-bar-container">
       <div class="left-action-bar">
-        <img src="@/assets/logo-gray-light.png" class="icon" @click="navigateIndex">
+        <img src="@/assets/logo-gray-light.png" class="icon">
       </div>
       <el-menu :default-active="activeIndex" mode="horizontal" @select="handleMenuSelect" :router="true" class="nav-bar"
                text-color="#CCCCCC" background-color="#292A2D" active-text-color="#FFFFFF">
         <el-menu-item index="/">凤凰书社</el-menu-item>
+        <el-menu-item index="/cart">购物车</el-menu-item>
+        <el-menu-item index="/notice" disabled>消息中心</el-menu-item>
         <el-submenu index="2">
-          <template slot="title">我的工作台</template>
-          <el-menu-item index="2-1">选项1</el-menu-item>
-          <el-menu-item index="2-2">选项2</el-menu-item>
-          <el-menu-item index="2-3">选项3</el-menu-item>
-          <el-submenu index="2-4">
-            <template slot="title">选项4</template>
-            <el-menu-item index="2-4-1">选项1</el-menu-item>
-            <el-menu-item index="2-4-2">选项2</el-menu-item>
-            <el-menu-item index="2-4-3">选项3</el-menu-item>
+          <template slot="title">相关信息</template>
+          <el-menu-item index="#">
+            <a href="https://book.icyfenix.cn/" target="_blank">Fenix？这是什么？</a>
+          </el-menu-item>
+          <el-submenu index="#">
+            <template slot="title">选择一种服务端</template>
+            <el-menu-item index="#1">
+              <a href="https://book.icyfenix.cn/architecture/springboot-base-arch" target="_blank">单体架构 By
+                SpringBoot</a>
+            </el-menu-item>
+            <el-menu-item index="#">
+              <a href="https://book.icyfenix.cn/architecture/springcloud-base-arch" target="_blank">微服务架构 By
+                SpringCloud</a>
+            </el-menu-item>
+            <el-menu-item index="#">
+              <a href="https://book.icyfenix.cn/architecture/kubernetes-base-arch" target="_blank">微服务架构 By
+                Kubernetes</a>
+            </el-menu-item>
+            <el-menu-item index="#">
+              <a href="https://book.icyfenix.cn/architecture/serverless-base-arch" target="_blank">无服务架构 By Knative</a>
+            </el-menu-item>
+          </el-submenu>
+          <el-submenu index="#2">
+            <template slot="title">真想买一本书？</template>
+            <el-menu-item index="#">
+              <a href="https://item.jd.com/63246908517.html" target="_blank">《深入理解Java虚拟机（第三版）》 @ 京东</a>
+            </el-menu-item>
+            <el-menu-item index="#">
+              <a href="https://item.jd.com/34377092907.html" target="_blank">《智慧的疆界》 @ 京东</a>
+            </el-menu-item>
+            <el-menu-item index="#">
+              <a href="https://item.jd.com/17021405508.html" target="_blank">《Java虚拟机规范（Java SE 7）》 @ 京东</a>
+            </el-menu-item>
+            <el-menu-item index="#">其他几本别买了，不推荐</el-menu-item>
           </el-submenu>
         </el-submenu>
-        <el-menu-item index="3" disabled>消息中心</el-menu-item>
-        <el-menu-item index="/detail/1">购物车</el-menu-item>
       </el-menu>
       <div class="right-action-bar">
         <div class="right-action">
@@ -46,9 +71,6 @@ export default {
   methods: {
     handleMenuSelect (key, keyPath) {
       // this.$router.push(key)
-    },
-    navigateIndex () {
-      this.$router.push('/')
     }
   }
 }
@@ -96,5 +118,10 @@ export default {
 
   .right-action > i:hover {
     color: #fff;
+  }
+
+  a {
+    color: rgb(204, 204, 204);
+    text-decoration: none;
   }
 </style>

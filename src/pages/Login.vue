@@ -44,13 +44,11 @@ export default {
         data.rememberMe = authorization.rememberMe
         data.language = authorization.language
         this.setupSession(data)
+        // 转向处理页面
         this.$router.push(this.nextPath)
       } else {
         throw new Error(data.message)
       }
-    },
-    register () {
-      this.registrationMode = true
     }
   }
 }

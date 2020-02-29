@@ -44,6 +44,7 @@
             <li><a href="https://github.com/axios/axios">Axios</a><br/>Promise based HTTP client for the browser and
               node.js
             </li>
+            <li><a href="http://mockjs.com/">Mock.js</a><br/>生成随机数据，拦截 Ajax 请求</li>
             <li><a href="https://www.designevo.com/cn">DesignEvo</a><br/>一款由PearlMountain有限公司设计研发的logo设计软件</li>
           </ul>
         </div>
@@ -54,14 +55,15 @@
           <span>
           如果本作品对您有帮助，可扫描以下二维码捐助作者：
         </span>
-          <img src="@/assets/qrcode.png" style="height: 150px">
+          <!--          <img src="@/assets/qrcode.png" style="height: 150px">-->
+          <qrcode value="https://qr.alipay.com/a6x03678v3npzomlyvtcif5" :options="qrcode_options"></qrcode>
           <span>
           在微信、微博、GitHub网站上关注、点赞亦是对作者的支持：
         </span>
           <ul class="contact_icons">
-            <li><img src="@/assets/icons/weixin.png"></li>
-            <li><img src="@/assets/icons/weibo.png"></li>
-            <li><img src="@/assets/icons/github.png"></li>
+            <li><a href="#" target="_blank"><img src="@/assets/icons/weixin.png"></a></li>
+            <li><a href="https://weibo.com/icyfenix" target="_blank"><img src="@/assets/icons/weibo.png"></a></li>
+            <li><a href="https://github.com/fenixsoft" target="_blank"><img src="@/assets/icons/github.png"></a></li>
           </ul>
         </div>
       </el-col>
@@ -78,8 +80,25 @@
 </template>
 
 <script>
+import VueQrcode from '@chenfengyuan/vue-qrcode'
+
 export default {
-  name: 'Copyright'
+  name: 'Copyright',
+  components: {
+    [VueQrcode.name]: VueQrcode
+  },
+  data () {
+    return {
+      qrcode_options: {
+        width: 150,
+        margin: 1,
+        color: {
+          dark: '#eee',
+          light: '#292A2D'
+        }
+      }
+    }
+  }
 }
 </script>
 
@@ -123,7 +142,7 @@ export default {
     padding: 0 5px;
   }
 
-  .contact_icons > li > img {
+  .contact_icons > li > a > img {
     width: 30px;
     height: 30px;
   }

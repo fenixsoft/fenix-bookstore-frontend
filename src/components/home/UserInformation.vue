@@ -27,7 +27,7 @@
         <el-button size="mini" type="danger" plain @click="exitLogin">退出登录</el-button>
       </div>
     </div>
-    <el-button icon="el-icon-user" slot="reference" circle @click="changeUserStatue"></el-button>
+    <el-button :icon="isAuthorized ? 'el-icon-user-solid' : 'el-icon-user'" slot="reference" circle @click="changeUserStatue"></el-button>
   </el-popover>
 </template>
 
@@ -69,7 +69,6 @@ export default {
     /**
      * 检查用户状态
      * 没有登陆的话，转向登陆页面
-     * 没有获取过用户账号信息的话，
      */
     changeUserStatue () {
       if (!this.isAuthorized) {

@@ -1,19 +1,19 @@
 <template>
-
-  <el-container>
-    <el-header style="height: auto">
-      <NavigationBar/>
-    </el-header>
-    <el-main>
-      <div class="container">
-        <router-view></router-view>
-      </div>
-    </el-main>
-    <el-footer>
-      <Copyright/>
-    </el-footer>
-  </el-container>
-
+<!--  <div class="home-box">-->
+    <el-container>
+      <el-header direction-="vertical">
+        <NavigationBar/>
+      </el-header>
+      <el-main>
+        <div class="container">
+          <router-view></router-view>
+        </div>
+      </el-main>
+      <el-footer>
+        <Copyright/>
+      </el-footer>
+    </el-container>
+<!--  </div>-->
 </template>
 
 <script>
@@ -35,5 +35,6 @@ export default {
     text-align: center;
     margin: 40px;
     width: 1320px;
+    height: 100%;
   }
 </style>

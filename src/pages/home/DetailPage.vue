@@ -16,7 +16,7 @@
         </el-col>
         <el-col :span="12">
           <el-divider direction="vertical" class="devider"></el-divider>
-          <Checkstand v-model="purchase" :product="book" @place-order="placeOrder"></Checkstand>
+          <Checkstand :purchase="purchase" :product="book"></Checkstand>
         </el-col>
       </el-row>
     </el-card>
@@ -53,16 +53,17 @@ export default {
     return {
       purchase: {
         delivery: true,
-        number: 1,
         address: {province: '广东省', city: '广州市', area: '海珠区'}
       },
       book: {
+        price: 0,
+        amount: 1,
         spec: {}
       }
     }
   },
   async created () {
-    this.book = (await api.warehouse.getUniqueProductById(this.id)).data
+    Object.assign(this.book, (await api.warehouse.getUniqueProductById(this.id)).data)
   },
   methods: {
     placeOrder (purchase) {
@@ -91,24 +92,6 @@ export default {
     font-size: 14px;
     line-height: 25px;
     color: #666;
-  }
-
-  .box-card {
-    width: 100%;
-    font-family: Helvetica Neue, PingFang SC, Hiragino Sans GB, Heiti SC, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
-  }
-
-  .header {
-    text-align: left;
-    font-weight: bolder;
-    font-size: 18px;
-    color: #666;
-    background-color: #FAFAFA;
-  }
-
-  .content {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    text-align: left;
   }
 
   .devider {
