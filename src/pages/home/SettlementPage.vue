@@ -115,11 +115,7 @@ export default {
      * 总金额（不含运费）
      */
     totalAmount () {
-      let sum = 0
-      this.settlement.items.forEach(product => {
-        sum += (product.price * product.amount)
-      })
-      return sum
+      return this.settlement.items.reduce((sum, product) => sum + (product.price * product.amount), 0)
     }
   },
   methods: {

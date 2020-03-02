@@ -8,7 +8,7 @@
                text-color="#CCCCCC" background-color="#292A2D" active-text-color="#FFFFFF">
         <el-menu-item index="/">凤凰书社</el-menu-item>
         <el-menu-item index="/cart">购物车</el-menu-item>
-        <el-menu-item index="/notice" disabled>消息中心</el-menu-item>
+        <el-menu-item index="/comment">留言板</el-menu-item>
         <el-submenu index="2">
           <template slot="title">相关信息</template>
           <el-menu-item index="#">
