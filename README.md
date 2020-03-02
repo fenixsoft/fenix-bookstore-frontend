@@ -88,30 +88,30 @@ if (process.env.NODE_ENV === 'development') {
 Fenix's BookStore的工程结构完全符合vue.js工程的典型习惯，事实上它在建立时就是通过vue-cli初始化的。此工程的结构与其中各个目录的作用主要如下所示：
 
 ```
-+---build							webpack编译配置，该目录中的内容一般不做改动
-+---config							webpack编译配置，将用户需要改动的内容提取至此
-+---dist							编译输出结果存放的位置
-+---markdown						与项目无关，用于支持markdown的资源（如图片）
++---build                           webpack编译配置，该目录中的内容一般不做改动
++---config                          webpack编译配置，将用户需要改动的内容提取至此
++---dist                            编译输出结果存放的位置
++---markdown                        与项目无关，用于支持markdown的资源（如图片）
 +---src
 |   +---api                         本地与远程的API接口
-|   |   +---local					本地服务，如localStorage、加密等
-|   |   +---mock					远程API接口的Mock
-|   |   |   \---json				Mock返回的数据
-|   |   \---remote					远程服务
-|   +---assets						资源文件，会被webpack哈希和压缩
-|   +---components					vue.js的组件目录，按照使用页面的结构放置
+|   |   +---local                   本地服务，如localStorage、加密等
+|   |   +---mock                    远程API接口的Mock
+|   |   |   \---json                Mock返回的数据
+|   |   \---remote                  远程服务
+|   +---assets                      资源文件，会被webpack哈希和压缩
+|   +---components                  vue.js的组件目录，按照使用页面的结构放置
 |   |   +---home
 |   |   |   +---cart
 |   |   |   +---detail
 |   |   |   \---main
 |   |   \---login
-|   +---pages						vue.js的视图目录，存放页面级组件
+|   +---pages                       vue.js的视图目录，存放页面级组件
 |   |   \---home
-|   +---plugins						vue.js的插件，如全局异常处理器
-|   +---router						vue-router路由配置
-|   \---store						vuex状态配置
-|       \---modules					vuex状态按名空间分隔存放
-\---static							静态资源，编译时原样打包，不会做哈希和压缩
+|   +---plugins                     vue.js的插件，如全局异常处理器
+|   +---router                      vue-router路由配置
+|   \---store                       vuex状态配置
+|       \---modules                 vuex状态按名空间分隔存放
+\---static                          静态资源，编译时原样打包，不会做哈希和压缩
 ```
 
 ## 组件
