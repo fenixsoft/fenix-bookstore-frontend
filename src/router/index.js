@@ -35,6 +35,10 @@ const router = new Router({
           path: '/pay',
           meta: {requireAuthentication: true},
           component: () => import('@/pages/home/PaymentPage')
+        }, {
+          // 评论页
+          path: '/comment',
+          component: () => import('@/pages/home/CommentPage')
         }
       ]
     }, {

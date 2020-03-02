@@ -40,14 +40,14 @@ const mutations = {
   /**
    * 调整在购物车中指定产品的数量
    * 如购物车中已有该产品则直接修改数量，如果没有，将对象的浅拷贝存入购物车
-   * 数量可为负数，用于对购物车中产品的调减，如产品调减后结果小于零，则直接将数量归零
+   * 数量可为负数，用于对购物车中产品的调减，如产品调减后结果小于零，则直接将数量归零，同时最大值也不允许超过10
    */
   adjustCartItems (state, product) {
     let item = state.items.find(item => item.id === product.id)
     if (item) {
-      item.amount = (item.amount + product.amount) || 0
+      item.amount = Math.min(10, (item.amount + product.amount) || 0)
     } else {
-      product.amount = product.amount || 0
+      product.amount = Math.min(10, product.amount || 0)
       state.items.push({...product})
     }
   },

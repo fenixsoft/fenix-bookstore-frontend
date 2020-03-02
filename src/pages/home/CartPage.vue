@@ -69,11 +69,7 @@ export default {
      * 商品总价
      **/
     total () {
-      let sum = 0
-      this.multipleSelection.forEach(product => {
-        sum += (product.price * product.amount)
-      })
-      return sum
+      return this.multipleSelection.reduce((sum, product) => sum + (product.price * product.amount), 0)
     }
   },
   mounted () {
