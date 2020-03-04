@@ -12,7 +12,7 @@ import errorPlugin from './plugins/errorhandler-plugin'
  * 如需要同时调试服务端，请修改此处判断条件
  */
 // eslint-disable-next-line no-constant-condition
-if (process.env.NODE_ENV === 'development') {
+if (process.env.MOCK) {
   require('./api/mock')
 }
 

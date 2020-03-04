@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - lts/*
+before_install:
+  - export TZ='Asia/Shanghai'
+install:
+  - npm install
+script:
+  - npm run build:static-web
+  - echo "icyfenix.net" >> dist/CNAME
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: dist
+  github_token: $gh_token
+  keep_history: true
+  target-branch: gh-pages
+  on:
+    branch: master
