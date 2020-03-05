@@ -5,7 +5,7 @@
       <span class="comment">本功能通过Gitment使用GitHub的Issues提供服务，请使用GitHub账号登录</span>
     </div>
     <div>
-      <iframe src="https://fenixsoft.github.io/messageboard/bookstore_purefrontend.html" style="width: 1300px; height: 1000px" frameborder="0"></iframe>
+      <iframe src="/static/board/gitalk.html" style="width: 1300px; height: 1000px" frameborder="0"></iframe>
     </div>
   </el-card>
 </template>

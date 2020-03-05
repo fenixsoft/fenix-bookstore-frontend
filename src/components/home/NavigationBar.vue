@@ -12,24 +12,24 @@
         <el-submenu index="2">
           <template slot="title">相关信息</template>
           <el-menu-item index="#">
-            <a href="https://book.icyfenix.cn/" target="_blank">Fenix？这是什么？</a>
+            <a href="http://icyfenix.pub/introduction/about-the-fenix-project.html" target="_blank">Fenix？这是什么？</a>
           </el-menu-item>
           <el-submenu index="#">
             <template slot="title">选择一种服务端</template>
             <el-menu-item index="#1">
-              <a href="https://book.icyfenix.cn/architecture/springboot-base-arch" target="_blank">单体架构 By
+              <a href="http://icyfenix.pub/architecture/monolithic-architecture/springboot-base-arch.html" target="_blank">单体架构 By
                 SpringBoot</a>
             </el-menu-item>
             <el-menu-item index="#">
-              <a href="https://book.icyfenix.cn/architecture/springcloud-base-arch" target="_blank">微服务架构 By
+              <a href="http://icyfenix.pub/architecture/microservices-architecture/springcloud-base-arch.html" target="_blank">微服务架构 By
                 SpringCloud</a>
             </el-menu-item>
             <el-menu-item index="#">
-              <a href="https://book.icyfenix.cn/architecture/kubernetes-base-arch" target="_blank">微服务架构 By
+              <a href="http://icyfenix.pub/architecture/microservices-architecture/kubernetes-base-arch.html" target="_blank">微服务架构 By
                 Kubernetes</a>
             </el-menu-item>
             <el-menu-item index="#">
-              <a href="https://book.icyfenix.cn/architecture/serverless-base-arch" target="_blank">无服务架构 By Knative</a>
+              <a href="http://icyfenix.pub/architecture/serverless-architecture/serverless-arch-knative.html" target="_blank">无服务架构 By Knative</a>
             </el-menu-item>
           </el-submenu>
           <el-submenu index="#2">

@@ -1,5 +1,7 @@
 # Fenix's BookStore前端工程
 
+![](https://api.travis-ci.com/fenixsoft/fenix-bookstore-frontend.svg?branch=master)
+
 如果你此时并不曾了解过什么是“The Fenix Project”，建议先阅读[这部分内容](http://icyfenix.pub/introduction/about-the-fenix-project.html)。
 
 Fenix Project的主要目的是展示不同的后端技术架构，相对而言，前端并非其重点。不过，前端的页面是比起后端各种服务来要直观得多，能让使用者更容易理解我们将要做的是一件什么事情。假设你是一名驾驶初学者，合理的学习路径肯定应该是把汽车发动，然后慢慢行驶起来，而不是马上从“引擎动力原理”、“变速箱构造”入手去设法深刻地了解一台汽车。所以，先来运行程序，看看最终的效果是什么样子吧。
@@ -8,7 +10,7 @@ Fenix Project的主要目的是展示不同的后端技术架构，相对而言�
 
 以下几种途径，可以马上浏览最终的效果：
 
-- 从互联网已部署的网站访问：
+- 从互联网已部署的网站（由GitHub Pages支持）访问：
 
 > 直接在浏览器访问：http://icyfenix.net/
 
