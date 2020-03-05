@@ -17,7 +17,7 @@ Fenix Project的主要目的是展示不同的后端技术架构，相对而言�
 - 通过Docker容器方式运行：
 
 > ```bash
-> $ docker run -p 80:80 --name bookstore icyfenix/bookstore:frontend 
+> $ docker run -d -p 80:80 --name bookstore icyfenix/bookstore:frontend 
 > ```
 >
 > 然后在浏览器访问：http://localhost

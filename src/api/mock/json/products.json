@@ -135,5 +135,23 @@
       "装帧": "平装"
     },
     "image": "/static/cover/jvm1.jpg"
+  },
+  {
+    "id": 8,
+    "title": "现代软件架构探索",
+    "price": 0,
+    "rate": 0,
+    "description": "<p>简单地说，这是针对软件开发中不同架构、技术方案（如单体架构、微服务、服务网格、无服务架构、云原生等等）的演示程序。包含可以作为实际项目开发参考的样例代码（PetStore-Like-Project），以及作者对这些架构的使用方法、优劣理解。</p>",
+    "spec": {
+      "作者": "周志明",
+      "ISBN": "OpenDocument",
+      "书名": "现代软件架构探索",
+      "页数": 0,
+      "出版社": "OpenDocument",
+      "出版年": "2020-2",
+      "装帧": "在线"
+    },
+    "image": "/static/cover/fenix.png",
+    "desc": "/static/desc/fenix.jpg"
   }
 ]
