@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="default.css">
+<script src="gitment.browser.js"></script>
+<html>
+	<body>
+		<div id="container"></div>
+	</body>
+	<script>
+	var gitment = new Gitment({
+		title: 'fenix_bookstore_comment',
+		id: 'pure_frontend_bookstore',
+		owner: 'fenixsoft',
+		repo: 'fenixsoft.github.io',
+		oauth: {
+			client_id: '5d62946f158cf1316fc4',
+			client_secret: '7011b262282f7cdc7e3c4e015b39cd0187e480d9'
+		}
+	})
+	gitment.render('container')
+	</script>
+</html>
