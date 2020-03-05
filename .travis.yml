@@ -9,11 +9,21 @@ script:
   - npm run build:static-web
   - echo "icyfenix.net" >> dist/CNAME
 deploy:
-  provider: pages
-  skip_cleanup: true
-  local_dir: dist
-  github_token: $gh_token
-  keep_history: true
-  target-branch: gh-pages
-  on:
-    branch: master
+  - provider: pages
+    skip_cleanup: true
+    local_dir: dist
+    github_token: $gh_token
+    keep_history: true
+    target-branch: gh-pages
+    on:
+      branch: master
+  - provider: script
+    skip_cleanup: true
+    script:
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - docker build -t bookstore:frontend .
+      - docker images
+      - docker tag bookstore:frontend $DOCKER_USERNAME/bookstore:frontend
+      - docker push $DOCKER_USERNAME/bookstore:frontend
+    on:
+      branch: master

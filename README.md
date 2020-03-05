@@ -10,9 +10,9 @@ Fenix Project的主要目的是展示不同的后端技术架构，相对而言�
 
 以下几种途径，可以马上浏览最终的效果：
 
-- 从互联网已部署的网站（由GitHub Pages支持）访问：
+- 从互联网已部署（由提供Travis-CI支持）的网站（由GitHub Pages提供支持）访问：
 
-> 直接在浏览器访问：http://icyfenix.net/
+> 直接在浏览器访问：https://icyfenix.net/
 
 - 通过Docker容器方式运行：
 
