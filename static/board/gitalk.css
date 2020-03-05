@@ -8,7 +8,7 @@
   -webkit-text-size-adjust: 100%;
   line-height: 1.5;
   color: #24292e;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  /*font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";*/
   font-size: 16px;
   line-height: 1.5;
   word-wrap: break-word;
@@ -911,7 +911,7 @@
   text-decoration: none;
 }
 .gt-container .gt-meta {
-  margin: 1.25em 0;
+  margin: 0 0 1.25em 0;
   padding: 1em 0;
   position: relative;
   border-bottom: 1px solid #e9e9e9;
