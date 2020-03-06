@@ -34,7 +34,7 @@
       </li>
     </ul>
     <div style="padding: 0 10px 0 18px; display: inline">
-      <el-input-number v-model="product.amount" controls-position="right" :min="1" :max="10" size="small"
+      <el-input-number v-model="purchase.amount" controls-position="right" :min="1" :max="10" size="small"
                        style="height: 39px; line-height: 39px;"/>
     </div>
     <el-button type="danger" icon="el-icon-shopping-cart-full" @click="addCart">加入购物车</el-button>
@@ -68,7 +68,7 @@ export default {
     addCart () {
       let payload = {
         ...this.product,
-        amount: this.product.amount || 1
+        amount: this.purchase.amount || 1
       }
       this.adjustCartItems(payload)
       this.$notify({
@@ -85,7 +85,7 @@ export default {
         purchase: this.purchase,
         items: [{
           ...this.product,
-          amount: this.product.amount || 1
+          amount: this.purchase.amount || 1
         }]
       }
       this.setupSettlementBillWithDefaultValue(payload)

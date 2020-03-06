@@ -26,7 +26,7 @@
         <div class="cover">
           <el-carousel height="350px">
             <el-carousel-item v-for="item in settlement.items" :key="item.id">
-              <img :src="item.image"/>
+              <img :src="item.cover"/>
             </el-carousel-item>
           </el-carousel>
         </div>

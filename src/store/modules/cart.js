@@ -114,7 +114,7 @@ const actions = {
    * 在调用此方法之前，通常应该调用setupSettlementBillWithDefaultValue来设置VUEX中的结算单据信息
    */
   async submitSettlement ({state, commit}) {
-    // TODO 这里提交的数据（items数组）可以清理一下，只提交id即可
+    // TODO 这里提交的数据（items数组）可以清理一下，只提交id即可，减少网络传输的数据
     let {data} = await api.payment.submitSettlement(state.settlement)
     commit('receivePayment', data)
   }

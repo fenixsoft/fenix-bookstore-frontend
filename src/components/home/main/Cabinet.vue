@@ -5,7 +5,7 @@
     </div>
     <el-row :gutter="0">
       <el-col :span="6" v-for="book in books" :key="book.id" class="book-container">
-        <el-image :src="book.image" class="image" @click="loadDetail(book.id)"/>
+        <el-image :src="book.cover" class="image" @click="loadDetail(book.id)"/>
         <div style="padding: 14px;">
           <span id="price">￥ {{book.price.toFixed(2)}}</span>
           <span id="title">{{book.title}}</span>

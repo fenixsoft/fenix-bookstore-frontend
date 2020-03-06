@@ -7,8 +7,9 @@ import auth from './remote/authorization-api'
 import account from './remote/account-api'
 import payment from './remote/payment-api'
 
-// 设置默认的请求时常为10s
-axios.defaults.timeout = 10000
+// 设置默认的HTTP访问参数
+axios.defaults.timeout = constants.REMOTE_TIMEOUT
+axios.defaults.baseURL = constants.REMOTE_BASE_URL
 
 /**
  * 响应拦截器

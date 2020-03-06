@@ -10,7 +10,7 @@
           <el-table-column type="selection" width="55" fixed show-overflow-tooltip></el-table-column>
           <el-table-column label="图片" width="150">
             <template slot-scope="scope">
-              <img :src="scope.row.image" style="width: 120px"/>
+              <img :src="scope.row.cover" style="width: 120px"/>
             </template>
           </el-table-column>
           <el-table-column prop="title" label="商品名称" sortable></el-table-column>

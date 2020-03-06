@@ -5,10 +5,10 @@
         <span>{{book.title}}</span>
       </div>
       <el-row class="content">
-        <el-col :span="6"><img id="cover" :src="book.image"></el-col>
+        <el-col :span="6"><img id="cover" :src="book.cover"></el-col>
         <el-col :span="6">
           <div style="padding-top: 30px">
-            <span v-for="key in Object.keys(book.spec)" :key="key" class="spec">{{key}}：{{book.spec[key]}}</span>
+            <span v-for="spec in book.specifications" :key="spec.item" class="spec">{{spec.item}}：{{spec.value}}</span>
             <span class="spec" style="display: inline-block;">豆瓣评分：</span>
             <el-rate :value="book.rate/2" disabled style="display: inline-block;"/>
             <span style="color:#ff9900; font-size: 14px">{{book.rate}}</span>
@@ -31,7 +31,7 @@
       <div slot="header" class="header">
         <span>详情介绍</span>
       </div>
-      <img v-if="book.desc" :src="book.desc"/>
+      <img v-if="book.detail" :src="book.detail"/>
       <span v-else class="content">本书暂无详细介绍</span>
     </el-card>
   </div>
@@ -52,23 +52,18 @@ export default {
   data () {
     return {
       purchase: {
+        amount: 1,
         delivery: true,
         address: {province: '广东省', city: '广州市', area: '海珠区'}
       },
       book: {
         price: 0,
-        amount: 1,
-        spec: {}
+        specifications: {}
       }
     }
   },
   async created () {
-    Object.assign(this.book, (await api.warehouse.getUniqueProductById(this.id)).data)
-  },
-  methods: {
-    placeOrder (purchase) {
-      console.log(purchase)
-    }
+    this.book = (await api.warehouse.getUniqueProductById(this.id)).data
   }
 }
 </script>

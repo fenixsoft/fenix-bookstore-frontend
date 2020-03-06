@@ -13,18 +13,18 @@ const loadJSON = (options, file) => {
 /**
  * 被Mock的各个请求
  */
-MockJS.mock('/products', 'get', o => loadJSON(o, 'products.json'))
-MockJS.mock('/advertisements', 'get', o => loadJSON(o, 'advertisements.json'))
-MockJS.mock(/\/product\/.*/, 'get', o => {
+MockJS.mock('/restful/products', 'get', o => loadJSON(o, 'products.json'))
+MockJS.mock('/restful/advertisements', 'get', o => loadJSON(o, 'advertisements.json'))
+MockJS.mock(/\/restful\/product\/.*/, 'get', o => {
   let json = loadJSON(o, 'products.json')
-  let id = /\/product\/(.*)/.exec(o.url)[1]
+  let id = /\/restful\/product\/(.*)/.exec(o.url)[1]
   return json.find(book => id === book.id.toString())
 })
-MockJS.mock('/auth', 'post', o => loadJSON(o, 'authorization.json'))
-MockJS.mock(/\/account\/.*/, 'get', o => loadJSON(o, 'account.json'))
-MockJS.mock('/account', 'post', {code: 0})
-MockJS.mock('/account', 'put', {code: 0})
-MockJS.mock('/settlement', 'post', o => {
+MockJS.mock('/restful/auth', 'post', o => loadJSON(o, 'authorization.json'))
+MockJS.mock(/\/restful\/account\/.*/, 'get', o => loadJSON(o, 'account.json'))
+MockJS.mock('/restful/account', 'post', {code: 0})
+MockJS.mock('/restful/account', 'put', {code: 0})
+MockJS.mock('/restful/settlement', 'post', o => {
   let json = loadJSON(o, 'settlement.json')
   json.expires = new Date().getTime() + (1000 * 60 * 3)
   return json
