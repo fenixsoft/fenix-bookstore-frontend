@@ -22,7 +22,7 @@ Vue.use(ElementUI)
  */
 Vue.use(errorPlugin, {
   errorHandler: (error, vm, info) => {
-    console.error(error)
+    // console.error(error)
     store.commit('notification/setException', error)
   }
 })

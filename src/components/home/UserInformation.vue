@@ -27,13 +27,14 @@
         <el-button size="mini" type="danger" plain @click="exitLogin">退出登录</el-button>
       </div>
     </div>
-    <el-button :icon="isAuthorized ? 'el-icon-user-solid' : 'el-icon-user'" slot="reference" circle @click="changeUserStatue"></el-button>
+    <el-button :icon="isAuthorized ? 'el-icon-user-solid' : 'el-icon-user'" slot="reference" circle
+               @click="changeUserStatue"></el-button>
   </el-popover>
 </template>
 
 <script>
 import api from '@/api'
-import {mapState, mapGetters, mapMutations} from 'vuex'
+import {mapState, mapGetters, mapMutations, mapActions} from 'vuex'
 
 export default {
   name: 'UserInformation',
@@ -56,8 +57,13 @@ export default {
     }
   },
   created () {
-    if (!this.account.id) {
-      this.refreshAccount()
+    if (this.isAuthorized) {
+      // Session是具有有效期的，设置更新令牌的触发器
+      this.refreshSessionTrigger()
+      // Session中有用户，而账号中没有，说明是通过“保存当前登陆状态”得到的，从服务端获取一下用户信息
+      if (!this.account.username) {
+        this.refreshAccount()
+      }
     }
   },
   computed: {
@@ -66,6 +72,7 @@ export default {
   },
   methods: {
     ...mapMutations('user', ['updateAccount', 'clearSession']),
+    ...mapActions('user', ['refreshSessionTrigger']),
     /**
      * 检查用户状态
      * 没有登陆的话，转向登陆页面
@@ -79,7 +86,7 @@ export default {
      * 从服务端请求用户信息，更新到vuex中
      */
     async refreshAccount () {
-      let {data} = await api.account.getAccountById(this.session.id)
+      let {data} = await api.account.getAccountByUsername(this.session.username)
       // 上传头像的功能不做了，直接用Gravatar的服务
       data.avatar = api.encrypt.gravatarEncode(data.email)
       this.updateAccount(data)

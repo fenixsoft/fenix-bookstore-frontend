@@ -16,7 +16,7 @@ export default {
    * @returns {Promise<AxiosResponse<T>>}
    */
   getUniqueProductById (id) {
-    return axios.get(`/product/${id}`)
+    return axios.get(`/products/${id}`)
   },
 
   /**

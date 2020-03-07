@@ -1,12 +1,9 @@
 {
-  "code": 0,
-  "id": 1,
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJpY3lmZW5peCIsInNjb3BlIjpbIkFMTCJdLCJleHAiOjE1ODM3MjU1OTQsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiIwMDUzMjQxYy1hYThjLTQwZWItOWM1Ny05NjYyOWRkYmIzZTYiLCJjbGllbnRfaWQiOiJib29rc3RvcmVfZnJvbnRlbmQiLCJ1c2VybmFtZSI6ImljeWZlbml4In0.DxunJ7KPR8fP2cDsQVz3gfYaTlIV_7B_1JbUJ49hz84",
+  "token_type": "bearer",
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJpY3lmZW5peCIsInNjb3BlIjpbIkFMTCJdLCJhdGkiOiIwMDUzMjQxYy1hYThjLTQwZWItOWM1Ny05NjYyOWRkYmIzZTYiLCJleHAiOjE1ODM3MjYxOTQsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiJhYzAzMGI1OS1lYzdkLTRkZTEtYjY0Yy05ZDdiYzczODhjY2MiLCJjbGllbnRfaWQiOiJib29rc3RvcmVfZnJvbnRlbmQiLCJ1c2VybmFtZSI6ImljeWZlbml4In0.T-nFd9DNVwmmeFrDMESB_ykRtaSKtzqPGYmZ-VeLnBE",
+  "expires_in": 299,
+  "scope": "ALL",
   "username": "icyfenix",
-  "email": "icyfenix@gmail.com",
-  "authorities": [
-    "ADMIN",
-    "USER"
-  ],
-  "expires": 2556115199000,
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJpY3lmZW5peCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSIsImRlbCJdLCJleHAiOjI1NTYxMTUxOTksImF1dGhvcml0aWVzIjpbIkFETUlOIiwiVVNFUiJdLF0sImp0aSI6IjBkZmQzMTA0LTMxZDItNGI5MC04ODE4LTg5Y2Q4ZWUxMzdiZiIsImNsaWVudF9pZCI6IndlYmFwcCJ9DQo.ZjQ4NTViN2Q4OWMxNjAyZjA3MWMxMzFkYTZlOGMz"
+  "jti": "0053241c-aa8c-40eb-9c57-96629ddbb3e6"
 }

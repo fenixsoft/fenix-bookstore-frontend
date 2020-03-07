@@ -39,15 +39,19 @@ export default {
      * 处理登录表单中的登录事件
      */
     async login (authorization) {
-      let {data} = await api.auth.login(authorization.name, authorization.password)
-      if (data.code === api.constants.REMOTE_OPERATION_SUCCESS) {
+      try {
+        let {data} = await api.auth.login(authorization.name, authorization.password)
         data.rememberMe = authorization.rememberMe
         data.language = authorization.language
         this.setupSession(data)
         // 转向处理页面
         this.$router.push(this.nextPath)
-      } else {
-        throw new Error(data.message)
+      } catch (e) {
+        this.$message({
+          showClose: true,
+          message: (e.response.data.error_description || e.message),
+          type: 'error'
+        })
       }
     }
   }

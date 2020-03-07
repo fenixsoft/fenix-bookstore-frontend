@@ -15,12 +15,12 @@ const loadJSON = (options, file) => {
  */
 MockJS.mock('/restful/products', 'get', o => loadJSON(o, 'products.json'))
 MockJS.mock('/restful/advertisements', 'get', o => loadJSON(o, 'advertisements.json'))
-MockJS.mock(/\/restful\/product\/.*/, 'get', o => {
+MockJS.mock(/\/restful\/products\/.*/, 'get', o => {
   let json = loadJSON(o, 'products.json')
-  let id = /\/restful\/product\/(.*)/.exec(o.url)[1]
+  let id = /\/restful\/products\/(.*)/.exec(o.url)[1]
   return json.find(book => id === book.id.toString())
 })
-MockJS.mock('/restful/auth', 'post', o => loadJSON(o, 'authorization.json'))
+MockJS.mock(/\/oauth\/token.*/, 'get', o => loadJSON(o, 'authorization.json'))
 MockJS.mock(/\/restful\/account\/.*/, 'get', o => loadJSON(o, 'account.json'))
 MockJS.mock('/restful/account', 'post', {code: 0})
 MockJS.mock('/restful/account', 'put', {code: 0})
