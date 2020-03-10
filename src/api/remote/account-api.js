@@ -1,4 +1,5 @@
 import axios from 'axios'
+import api from '@/api'
 
 export default {
 
@@ -13,13 +14,17 @@ export default {
    * 注册的新用户
    */
   registerAccount (account) {
-    return axios.post('/account', {account})
+    // 构造新的用户提交，避免影响界面显示
+    return axios.post('/account', {
+      ...account,
+      password: api.encrypt.defaultEncode(account.password)
+    })
   },
 
   /**
    * 更新用户信息
    */
   updateAccount (account) {
-    return axios.put('/account', {account})
+    return axios.put('/account', account)
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <el-carousel :interval="5000" type="card" height="400px">
     <el-carousel-item v-for="item in advertisements" :key="item.id">
-      <el-image :src="item.image" class="image" @click="loadDetail(item.link)"/>
+      <el-image :src="item.image" class="image" @click="loadDetail(item.productId)"/>
     </el-carousel-item>
   </el-carousel>
 </template>
@@ -20,12 +20,8 @@ export default {
     this.advertisements = (await api.warehouse.getAdvertisements()).data
   },
   methods: {
-    loadDetail (link) {
-      if (link.toUpperCase().startsWith('HTTP')) {
-        window.open(link, '_blank')
-      } else {
-        this.$router.push(link)
-      }
+    loadDetail (productId) {
+      this.$router.push(`/detail/${productId}`)
     }
   }
 }

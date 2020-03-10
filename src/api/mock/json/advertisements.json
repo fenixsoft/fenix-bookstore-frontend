@@ -2,16 +2,16 @@
   {
     "id": "fenix",
     "image": "/static/carousel/fenix2.png",
-    "link": "/detail/8"
+    "productId": 8
   },
   {
     "id": "ai",
     "image": "/static/carousel/ai.png",
-    "link": "/detail/2"
+    "productId": 2
   },
   {
     "id": "jvm",
     "image": "/static/carousel/jvm3.png",
-    "link": "/detail/1"
+    "productId": 1
   }
 ]

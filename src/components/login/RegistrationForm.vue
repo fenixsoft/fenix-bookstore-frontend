@@ -4,7 +4,7 @@
     <span class="title">新用户注册</span>
     <el-form ref="account_form" :model="account" :rules="rules" label-position="left" class="account_form">
       <el-form-item prop="user">
-        <el-input placeholder="请输入用户名" v-model="account.user">
+        <el-input placeholder="请输入用户名" v-model="account.username">
           <template slot="prepend"><i class="el-icon-user"></i></template>
         </el-input>
       </el-form-item>
@@ -18,7 +18,7 @@
           <template slot="prepend"><i class="el-icon-user"></i></template>
         </el-input>
       </el-form-item>
-      <el-form-item  prop="email">
+      <el-form-item prop="email">
         <el-input placeholder="请输入邮箱" v-model="account.email">
           <template slot="prepend"><i class="el-icon-receiving"></i></template>
         </el-input>
@@ -46,13 +46,13 @@ export default {
   data () {
     return {
       account: {
-        name: '',
+        username: '',
         email: '',
         password: '',
         telephone: ''
       },
       rules: {
-        user: [
+        username: [
           {required: true, message: '请填写用户名', trigger: 'blur'}
         ],
         name: [
@@ -89,20 +89,22 @@ export default {
      * 向服务端提交注册信息
      */
     async submitRegistration () {
-      let {data} = await api.account.registerAccount(this.account)
-      if (data.code === api.constants.REMOTE_OPERATION_SUCCESS) {
-        // 注册成功后自动登陆该用户，并转向首页
-        data = (await api.auth.login(this.account.name, this.account.password)).data
+      try {
+        let {data} = await api.account.registerAccount(this.account)
         if (data.code === api.constants.REMOTE_OPERATION_SUCCESS) {
+          // 注册成功后自动登陆该用户，并转向首页
+          data = (await api.auth.login(this.account.username, this.account.password)).data
           data.rememberMe = false
           data.language = 'zhCN'
           this.setupSession(data)
           this.$router.push('/')
           return
         }
+      } catch (e) {
+        // 没有什么别的处理了，显示错误信息告知用户
+        console.error(e)
+        this.$alert(e.message, '出现异常')
       }
-      // 注册或者登录任一请求未返回成功标志，均显示错误信息告知用户
-      this.$message.error(data.message)
     }
   }
 }

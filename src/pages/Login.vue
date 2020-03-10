@@ -47,11 +47,7 @@ export default {
         // 转向处理页面
         this.$router.push(this.nextPath)
       } catch (e) {
-        this.$message({
-          showClose: true,
-          message: (e.response.data.error_description || e.message),
-          type: 'error'
-        })
+        this.$alert(e.message, '出现异常')
       }
     }
   }

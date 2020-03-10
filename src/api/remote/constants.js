@@ -3,7 +3,7 @@ export default {
   REMOTE_OPERATION_SUCCESS: 0,
 
   // HTTP 请求超时时间（毫秒）
-  REMOTE_TIMEOUT: 10000,
+  REMOTE_TIMEOUT: 30000,
   // 资源服务请求前缀
   REMOTE_BASE_URL: '/restful',
 

@@ -35,14 +35,22 @@ axios.interceptors.request.use(config => {
  * HTTP响应拦截器
  * 将返回非200状态的HTTP CODE和无响应均调用promise reject
  */
-axios.interceptors.response.use(res => res, (error) => {
+axios.interceptors.response.use(res => Promise.resolve(res), error => {
   console.error('远程服务未能成功发送：', error)
   // 尝试提取服务端错误
   const res = error.response
   if (res && res.data) {
+    console.error(res.data)
     if (res.data.error && res.data.error_description) {
-      let message = `HTTP Code:${res.status}, Error:[${res.data.error}] ${res.data.error_description}`
-      console.error(res.data)
+      // OAuth令牌Endpoint的错误格式：{error:"",error_description:""}
+      const message = `HTTP Code:${res.status}, 信息:[${res.data.error}] ${res.data.error_description}`
+      return Promise.reject(Error(message))
+    } else if (res.data.code && res.data.message) {
+      // 服务端CommonResponse的错误格式：{code:xx,message:""}
+      return Promise.reject(Error(res.data.message))
+    } else if (res.data.error && res.data.message) {
+      // Jersey的默认错误格式：{status:xx,timestamp:"",error:"",message:xx}
+      const message = `HTTP Code:${res.status}, 信息:[${res.data.error}] ${res.data.message}`
       return Promise.reject(Error(message))
     }
   }
