@@ -104,31 +104,17 @@ export default {
      * 更新账户信息
      */
     modifyAccount () {
-      this.$refs['account_form'].validate((valid) => {
-        if (valid) {
-          this.submitModification()
-        } else {
-          return false
-        }
-      })
+      this.$refs['account_form'].validate(valid => valid ? this.submitModification() : false)
     },
     /**
      * 向服务端提交账户更新
      */
     async submitModification () {
-      let res = (await api.account.updateAccount(this.account)).data
-      if (res.code === api.constants.REMOTE_OPERATION_SUCCESS) {
-        this.$notify({
-          title: '成功',
-          message: '账号信息已成功更新',
-          type: 'success'
-        })
-      } else {
-        this.$notify({
-          title: '注意',
-          message: res.message,
-          type: 'error'
-        })
+      try {
+        await api.account.updateAccount(this.account)
+        this.$notify({title: '成功', message: '账号信息已成功更新', type: 'success'})
+      } catch (e) {
+        this.$notify({title: '失败', message: e.message, type: 'error'})
       }
     }
   }

@@ -7,7 +7,7 @@ install:
   - npm install
 script:
   - npm run build:static-web
-  - echo "icyfenix.net" >> dist/CNAME
+  - echo "bookstore.icyfenix.cn" >> dist/CNAME
 deploy:
   - provider: pages
     skip_cleanup: true

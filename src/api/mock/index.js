@@ -24,8 +24,5 @@ MockJS.mock(/\/oauth\/token.*/, 'get', o => loadJSON(o, 'authorization.json'))
 MockJS.mock(/\/restful\/account\/.*/, 'get', o => loadJSON(o, 'account.json'))
 MockJS.mock('/restful/account', 'post', {code: 0})
 MockJS.mock('/restful/account', 'put', {code: 0})
-MockJS.mock('/restful/settlement', 'post', o => {
-  let json = loadJSON(o, 'settlement.json')
-  json.expires = new Date().getTime() + (1000 * 60 * 3)
-  return json
-})
+MockJS.mock('/restful/settlement', 'post', o => loadJSON(o, 'settlement.json'))
+MockJS.mock(/\/restful\/pay\/.*/, 'patch', {code: 0})

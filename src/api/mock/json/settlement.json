@@ -1,6 +1,9 @@
 {
-  "code": 0,
-  "id": "0756002063",
-  "qrcode": "https://SOME_PAY_GATEWAY/id=d3746923-4942-487a-a75e-614c220a51d0",
-  "expires": 0
+  "id": 0,
+  "createTime": "2020-03-13T16:04:53.388+0000",
+  "payId": "0904ff25-819b-42d1-9651-dffd79a7893e",
+  "totalPrice": 141.0,
+  "expires": 120000,
+  "paymentLink": "https://localhost:8080/pay/modify/0904ff25-819b-42d1-9651-dffd79a7893e?state=PAYED",
+  "payState": "WAITING"
 }

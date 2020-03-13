@@ -109,7 +109,7 @@ export default {
      * 邮寄地址全称
      */
     fullAddress () {
-      return `${this.purchase.address.province}  ${this.purchase.address.city} ${this.purchase.address.area} ${this.purchase.location}`
+      return `${this.purchase.address.province}  ${this.purchase.address.city} ${this.purchase.address.area} ${this.purchase.location || ''}`
     },
     /**
      * 总金额（不含运费）
@@ -134,7 +134,7 @@ export default {
      */
     async prepareSettlement () {
       this.setupSettlementBillWithDefaultValue({
-        purchase: this.purchase
+        purchase: {...this.purchase, location: this.fullAddress}
       })
       await this.submitSettlement()
       this.$router.push('/pay')
