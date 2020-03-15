@@ -23,3 +23,9 @@ deploy:
     script: bash travis_docker_push.sh
     on:
       branch: master
+  - provider: script
+    keep_history: true
+    skip_cleanup: true
+    script: npm run deoply:refresh-cdn
+    on:
+      branch: master

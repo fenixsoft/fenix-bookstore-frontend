@@ -9,7 +9,8 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "build:static-web": "node build/build.js --mock"
+    "build:static-web": "node build/build.js --mock",
+    "deoply:refresh-cdn": "node build/qcloud.cdn.refresh.js"
   },
   "dependencies": {
     "@chenfengyuan/vue-qrcode": "^1.0.2",
@@ -57,6 +58,7 @@
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.2.1",
+    "qcloud-cdn-node-sdk": "^1.0.0",
     "rimraf": "^2.6.0",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
