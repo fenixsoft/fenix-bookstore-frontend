@@ -8,6 +8,7 @@ body {
   overflow-x: hidden;
   /* 解决el-images为了预览模式设置hidden导致滚动条消失的问题 */
   overflow-y: auto !important;
+  padding-right: 0 !important;
   height: 100%;
 }
 

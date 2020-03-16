@@ -10,6 +10,20 @@ const loadJSON = (options, file) => {
   return json
 }
 
+const success = options => {
+  const repo = {code: 0}
+  console.debug(`REQUEST：${options.type} ${options.url}：`, options)
+  console.debug('RESPONSE：', repo)
+  return repo
+}
+
+const failure = options => {
+  const repo = {code: 1, message: '远程调用已正确发出，但静态Mock运行模式并没有服务端支持，此操作未产生效果'}
+  console.debug(`REQUEST：${options.type} ${options.url}：`, options)
+  console.debug('RESPONSE：', repo)
+  return repo
+}
+
 /**
  * 被Mock的各个请求
  */
@@ -22,7 +36,12 @@ MockJS.mock(/\/restful\/products\/.*/, 'get', o => {
 })
 MockJS.mock(/\/oauth\/token.*/, 'get', o => loadJSON(o, 'authorization.json'))
 MockJS.mock(/\/restful\/accounts\/.*/, 'get', o => loadJSON(o, 'accounts.json'))
-MockJS.mock('/restful/accounts', 'post', {code: 0})
-MockJS.mock('/restful/accounts', 'put', {code: 0})
+MockJS.mock('/restful/accounts', 'post', o => success(o))
+MockJS.mock('/restful/accounts', 'put', o => success(o))
 MockJS.mock('/restful/settlement', 'post', o => loadJSON(o, 'settlements.json'))
-MockJS.mock(/\/restful\/pay\/.*/, 'patch', {code: 0})
+MockJS.mock(/\/restful\/pay\/.*/, 'patch', o => failure(o))
+MockJS.mock('/restful/products', 'post', o => failure(o))
+MockJS.mock('/restful/products', 'put', o => failure(o))
+MockJS.mock(/\/restful\/pay\/stockpile\/.*/, 'get', o => loadJSON(o, 'stockpile.json'))
+MockJS.mock(/\/restful\/pay\/stockpile\/.*/, 'patch', o => failure(o))
+MockJS.mock(/\/restful\/products\/.*/, 'delete', o => failure(o))

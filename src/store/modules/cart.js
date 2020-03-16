@@ -121,10 +121,15 @@ const actions = {
       }),
       purchase: state.settlement.purchase
     }
-    let {data} = await api.payment.submitSettlement(settlement)
-    // 将超时的相对时间转为绝对时间
-    data.expires += new Date().getTime()
-    commit('receivePayment', data)
+    let res
+    try {
+      res = (await api.payment.submitSettlement(settlement)).data
+      // 将超时的相对时间转为绝对时间
+      res.expires += new Date().getTime()
+    } catch (e) {
+      res = {message: e.message}
+    }
+    commit('receivePayment', res)
   }
 }
 

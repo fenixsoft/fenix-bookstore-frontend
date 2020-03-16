@@ -91,7 +91,7 @@ export default {
      * 去除HTML标签
      */
     pureText (text) {
-      return text.replace(/<\/?[^>]*>/g, '')
+      return api.stringUtil.pureText(text)
     },
     /**
      * 直接支付购买

@@ -6,6 +6,7 @@ const EMPTY_SESSION = () => ({
   expires: 0,
   access_token: '',
   refresh_token: '',
+  authorities: [],
   token_type: 'bearer',
   jti: '',
   // 以下为客户端自定义信息
@@ -38,7 +39,12 @@ const getters = {
    * 检查授权是否有效
    * 生效要求：持有JWT令牌，且并未超出令牌期限
    */
-  isAuthorized: state => !!state.session.access_token && (state.session.expires > new Date().getTime())
+  isAuthorized: state => !!state.session.access_token && (state.session.expires > new Date().getTime()),
+  /**
+   * 检查是否管理员
+   * 生效要求：已获得登录授权，并且角色中存在ROLE_ADMIN
+   */
+  isAdministrator: (state, getters) => getters.isAuthorized && state.session.authorities.includes('ROLE_ADMIN')
 }
 
 const mutations = {

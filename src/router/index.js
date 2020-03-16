@@ -36,6 +36,11 @@ const router = new Router({
           meta: {requireAuthentication: true},
           component: () => import('@/pages/home/PaymentPage')
         }, {
+          // 库存管理页
+          path: '/warehouse',
+          meta: {requireAuthentication: true, requireAdministrator: true},
+          component: () => import('@/pages/home/WarehousePage')
+        }, {
           // 评论页
           path: '/comment',
           component: () => import('@/pages/home/CommentPage')
@@ -56,9 +61,15 @@ const router = new Router({
  */
 router.beforeEach((to, from, next) => {
   if (to.meta.requireAuthentication && !store.getters['user/isAuthorized']) {
+    // 未登陆，则直接转到登陆
     next({name: 'Login', query: {redirect: to.fullPath}})
   } else {
-    next()
+    // 已登陆，但不是管理员，则转到首页
+    if (to.meta.requireAdministrator && !store.getters['user/isAdministrator']) {
+      next({path: '/'})
+    } else {
+      next()
+    }
   }
 })
 

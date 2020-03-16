@@ -29,7 +29,7 @@
         <div class="sale_content">
           <v-distpicker :province="purchase.address.province" :city="purchase.address.city"
                         :area="purchase.address.area" @selected="onAddressSelected"></v-distpicker>
-          <span class="address_info"><b>有货</b> 由京东发货, 并提供售后服务. 18:00前下单，预计明天送达</span>
+          <span class="address_info"><b>有货</b> 由本店发货, 并提供售后服务. 18:00前下单，预计明天送达</span>
         </div>
       </li>
     </ul>

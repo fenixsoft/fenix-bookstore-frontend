@@ -82,7 +82,7 @@ export default {
     /**
      * 商品支付超期的倒计时
      */
-    countDown: function () {
+    countDown () {
       const msec = this.payment.expires - new Date().getTime()
       if (msec > 0) {
         this.countdown.min = parseInt(msec / 1000 / 60 % 60)

@@ -4,7 +4,6 @@ export default {
 
   /**
    * 无过滤条件，获取全部的产品
-   * @returns {Promise<AxiosResponse<T>>}
    */
   getAllProducts () {
     return axios.get('/products')
@@ -12,8 +11,6 @@ export default {
 
   /**
    * 根据ID查询指定的唯一产品
-   * @param id
-   * @returns {Promise<AxiosResponse<T>>}
    */
   getUniqueProductById (id) {
     return axios.get(`/products/${id}`)
@@ -21,10 +18,44 @@ export default {
 
   /**
    * 取轮播广告
-   * @returns {Promise<AxiosResponse<T>>}
    */
   getAdvertisements () {
     return axios.get('/advertisements')
+  },
+
+  /**
+   * 更新指定商品
+   */
+  updateProduct (product) {
+    return axios.put(`/products`, product)
+  },
+
+  /**
+   * 新建指定的商品
+   */
+  createProduct (product) {
+    return axios.post(`/products`, product)
+  },
+
+  /**
+   * 删除指定商品
+   */
+  removeProduct (productId) {
+    return axios.delete(`/products/${productId}`)
+  },
+
+  /**
+   * 获取指定商品的库存情况
+   */
+  queryStock (productId) {
+    return axios.get(`/pay/stockpile/${productId}`)
+  },
+
+  /**
+   * 修改商品库存F
+   */
+  updateStock (productId, amount) {
+    return axios.patch(`/pay/stockpile/${productId}?amount=${amount}`)
   }
 
 }

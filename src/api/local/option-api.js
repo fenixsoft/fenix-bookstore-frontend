@@ -38,5 +38,13 @@ export default {
 
   isSessionRefreshable () {
     return !!this.getSession().refresh_token
+  },
+
+  isAdministrator () {
+    if (!this.hasSession()) {
+      return false
+    }
+    const authorities = this.getSession().authorities
+    return authorities && authorities.includes('ROLE_ADMIN')
   }
 }

@@ -4,32 +4,37 @@
       <div class="left-action-bar">
         <img src="@/assets/logo-gray-light.png" class="icon">
       </div>
-      <el-menu :default-active="activeIndex" mode="horizontal" @select="handleMenuSelect" :router="true" class="nav-bar"
+      <el-menu :default-active="activeIndex" mode="horizontal" :router="true" class="nav-bar"
                text-color="#CCCCCC" background-color="#292A2D" active-text-color="#FFFFFF">
         <el-menu-item index="/">凤凰书社</el-menu-item>
         <el-menu-item index="/cart">购物车</el-menu-item>
+        <el-menu-item index="/warehouse" :disabled="!isAdministrator">商品库存</el-menu-item>
         <el-menu-item index="/comment">留言板</el-menu-item>
         <el-submenu index="2">
           <template slot="title">相关信息</template>
           <el-menu-item index="#">
-            <a href="http://icyfenix.pub/introduction/about-the-fenix-project.html" target="_blank">Fenix？这是什么？</a>
+            <a href="http://icyfenix.cn/introduction/about-the-fenix-project.html" target="_blank">Fenix？这是什么？</a>
           </el-menu-item>
           <el-submenu index="#">
             <template slot="title">选择一种服务端</template>
             <el-menu-item index="#1">
-              <a href="http://icyfenix.pub/architecture/monolithic-architecture/springboot-base-arch.html" target="_blank">单体架构 By
+              <a href="http://icyfenix.pub/architecture/monolithic-architecture/springboot-base-arch.html"
+                 target="_blank">单体架构 By
                 SpringBoot</a>
             </el-menu-item>
             <el-menu-item index="#">
-              <a href="http://icyfenix.pub/architecture/microservices-architecture/springcloud-base-arch.html" target="_blank">微服务架构 By
+              <a href="http://icyfenix.pub/architecture/microservices-architecture/springcloud-base-arch.html"
+                 target="_blank">微服务架构 By
                 SpringCloud</a>
             </el-menu-item>
             <el-menu-item index="#">
-              <a href="http://icyfenix.pub/architecture/microservices-architecture/kubernetes-base-arch.html" target="_blank">微服务架构 By
+              <a href="http://icyfenix.pub/architecture/microservices-architecture/kubernetes-base-arch.html"
+                 target="_blank">微服务架构 By
                 Kubernetes</a>
             </el-menu-item>
             <el-menu-item index="#">
-              <a href="http://icyfenix.pub/architecture/serverless-architecture/serverless-arch-knative.html" target="_blank">无服务架构 By Knative</a>
+              <a href="http://icyfenix.cn/architecture/serverless-architecture/serverless-arch-knative.html"
+                 target="_blank">无服务架构 By Knative</a>
             </el-menu-item>
           </el-submenu>
           <el-submenu index="#2">
@@ -58,6 +63,7 @@
 
 <script>
 import UserInformation from './UserInformation'
+import {mapGetters} from 'vuex'
 
 export default {
   components: {
@@ -68,11 +74,10 @@ export default {
       activeIndex: '/'
     }
   },
-  methods: {
-    handleMenuSelect (key, keyPath) {
-      // this.$router.push(key)
-    }
-  }
+  computed: {
+    ...mapGetters('user', ['isAdministrator'])
+  },
+  methods: {}
 }
 </script>
 

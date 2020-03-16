@@ -6,6 +6,7 @@ import encrypt from './local/encrypt-api'
 import auth from './remote/authorization-api'
 import account from './remote/account-api'
 import payment from './remote/payment-api'
+import stringUtil from './local/string-api'
 
 // 设置默认的HTTP访问参数
 axios.defaults.timeout = constants.REMOTE_TIMEOUT
@@ -35,7 +36,13 @@ axios.interceptors.request.use(config => {
  * HTTP响应拦截器
  * 将返回非200状态的HTTP CODE和无响应均调用promise reject
  */
-axios.interceptors.response.use(res => Promise.resolve(res), error => {
+axios.interceptors.response.use(res => {
+  if (res.data.code && res.data.code !== 0) {
+    return Promise.reject(Error(res.data.message))
+  } else {
+    return Promise.resolve(res)
+  }
+}, error => {
   console.error('远程服务未能成功发送：', error)
   // 尝试提取服务端错误
   const res = error.response
@@ -66,5 +73,6 @@ export default {
   payment,
   // local
   option,
-  encrypt
+  encrypt,
+  stringUtil
 }
