@@ -1,18 +1,18 @@
 const crypto = require('crypto')
+const bcrypt = require('bcryptjs')
 
-const MD5_CLIENT_SALT = 'icyfenix.cn'
+const CLIENT_SALT = '$2a$10$o5L.dWYEjZjaejOmN3x4Qu'
 
 export default {
 
   /**
    * 默认编码
-   * 采用MD5加密，HEX编码返回
+   * 采用MD5加密，HEX编码，加盐，Bcrypt加密，返回
    *
    * @param source 待加密的字符串原文
-   * @returns {PromiseLike<ArrayBuffer>}
    */
   defaultEncode (source) {
-    return crypto.createHash('md5').update(source + MD5_CLIENT_SALT).digest('hex')
+    return bcrypt.hashSync(crypto.createHash('md5').update(source).digest('hex'), CLIENT_SALT).substring(CLIENT_SALT.length)
   },
 
   /**
