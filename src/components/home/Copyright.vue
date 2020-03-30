@@ -53,10 +53,10 @@
         <div>
           <h1>支持作者</h1>
           <span>
-          如果本作品对您有帮助，可扫描以下二维码捐助作者：
+          可扫描以下二维码在微信公众号上关注更新文章：
         </span>
           <!--          <img src="@/assets/qrcode.png" style="height: 150px">-->
-          <qrcode value="https://qr.alipay.com/a6x03678v3npzomlyvtcif5" :options="qrcode_options"></qrcode>
+          <qrcode value="http://weixin.qq.com/r/tEz07EbEQRs_rQKP9xmm" :options="qrcode_options"></qrcode>
           <span>
           在微信、微博、GitHub网站上关注、点赞亦是对作者的支持：
         </span>
