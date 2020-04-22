@@ -48,14 +48,14 @@ export default {
    * 获取指定商品的库存情况
    */
   queryStock (productId) {
-    return axios.get(`/pay/stockpile/${productId}`)
+    return axios.get(`/products/stockpile/${productId}`)
   },
 
   /**
-   * 修改商品库存F
+   * 修改商品库存
    */
   updateStock (productId, amount) {
-    return axios.patch(`/pay/stockpile/${productId}?amount=${amount}`)
+    return axios.patch(`/products/stockpile/${productId}?amount=${amount}`)
   }
 
 }

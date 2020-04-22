@@ -2,18 +2,18 @@
 
 <p align="center">
   <a href="https://icyfenix.cn" target="_blank">
-    <img width="180" src="https://icyfenix.cn/images/logo-color.png" alt="logo">
+    <img width="180" src="https://raw.githubusercontent.com/fenixsoft/awesome-fenix/master/.vuepress/public/images/logo-color.png" alt="logo">
   </a>
 </p>
 <p align="center">
-    <a href="https://iycfenix.cn"  style="display:inline-block"><img src="https://icyfenix.cn/images/Release-v1.png"></a>
+    <a href="https://iycfenix.cn"  style="display:inline-block"><img src="https://raw.githubusercontent.com/fenixsoft/awesome-fenix/master/.vuepress/public/images/Release-v1.svg"></a>
   <a href="https://travis-ci.com/fenixsoft/fenix-bookstore-frontend" target="_blank"  style="display:inline-block"><img src="https://api.travis-ci.com/fenixsoft/fenix-bookstore-frontend.svg?branch=master" alt="Travis-CI"></a>
-  <a href="https://creativecommons.org/licenses/by/4.0/"  target="_blank" style="display:inline-block"><img src="https://icyfenix.cn/images/DocLicense-CC-red.png" alt="Document License"></a>
-    <a href="https://www.apache.org/licenses/LICENSE-2.0"  target="_blank" style="display:inline-block"><img src="https://icyfenix.cn/images/License-Apache.png" alt="License"></a>
-    <a href="mailto:icyfenix@gmail.com" target="_blank" style="display:inline-block"><img src="https://icyfenix.cn/images/Author-IcyFenix-blue.png" alt="Mail to Author"></a>
+  <a href="https://creativecommons.org/licenses/by/4.0/"  target="_blank" style="display:inline-block"><img src="https://icyfenix.cn/images/DocLicense-CC-red.svg" alt="Document License"></a>
+    <a href="https://www.apache.org/licenses/LICENSE-2.0"  target="_blank" style="display:inline-block"><img src="https://raw.githubusercontent.com/fenixsoft/awesome-fenix/master/.vuepress/public/images/License-Apache.svg" alt="License"></a>
+    <a href="http://icyfenix.cn/introduction/about-me.html" target="_blank" style="display:inline-block"><img src="https://raw.githubusercontent.com/fenixsoft/awesome-fenix/master/.vuepress/public/images/Author-IcyFenix-blue.svg" alt="Mail to Author"></a>
 </p>
 
-如果你此时并不曾了解过什么是“The Fenix Project”，建议先阅读[这部分内容](https://icyfenix.cn/introduction/about-the-fenix-project.html)。
+如果你此时并不曾了解过什么是“The Fenix Project”，建议先阅读<a href="https://icyfenix.cn/introduction/about-the-fenix-project.html">这部分内容</a>。
 
 Fenix Project的主要目的是展示不同的后端技术架构，相对而言，前端并非其重点。不过，前端的页面是比起后端各种服务来要直观得多，能让使用者更容易理解我们将要做的是一件什么事情。假设你是一名驾驶初学者，合理的学习路径肯定应该是把汽车发动，然后慢慢行驶起来，而不是马上从“引擎动力原理”、“变速箱构造”入手去设法深刻地了解一台汽车。所以，先来运行程序，看看最终的效果是什么样子吧。
 
@@ -103,8 +103,8 @@ if (process.env.MOCK) {
 Fenix's BookStore的工程结构完全符合vue.js工程的典型习惯，事实上它在建立时就是通过vue-cli初始化的。此工程的结构与其中各个目录的作用主要如下所示：
 
 ```
-+---build                           webpack编译配置，该目录中的内容一般不做改动
-+---config                          webpack编译配置，将用户需要改动的内容提取至此
++---build                           webpack编译配置，该目录的内容一般不做改动
++---config                          webpack编译配置，用户需改动的内容提取至此
 +---dist                            编译输出结果存放的位置
 +---markdown                        与项目无关，用于支持markdown的资源（如图片）
 +---src
@@ -145,17 +145,11 @@ Fenix's BookStore前端部分基于以下开源组件和免费资源构建：
 
 ## 协议
 
-本作品代码部分采用[Apache 2.0协议](https://www.apache.org/licenses/LICENSE-2.0)进行许可。
-
-您同样自由地对代码进行修改，再发布，可以用作商业用途。
-
-只要您遵守许可协议中保留作者署名、保留Apache License即可。
-
-本作品文档部分采用[知识共享署名 4.0 国际许可协议](http://creativecommons.org/licenses/by/4.0/)进行许可。 
-
-您可以自由地：
-
-- 共享 — 在任何媒介上以任何形式复制、发行本作品
-- 演绎 — 修改、转换或以本作品为基础进行二次创作
-
-只要您遵守许可协议条款中署名、非商业性使用、相同方式共享的条件，许可人就无法收回您的这些权利。
+- 本文档代码部分采用[Apache 2.0协议](https://www.apache.org/licenses/LICENSE-2.0)进行许可。遵循许可的前提下，你可以自由地对代码进行修改，再发布，可以将代码用作商业用途。但要求你：
+  - **署名**：在原有代码和衍生代码中，保留原作者署名及代码来源信息。
+  - **保留许可证**：在原有代码和衍生代码中，保留Apache 2.0协议文件。
+  
+- 本作品文档部分采用[知识共享署名 4.0 国际许可协议](http://creativecommons.org/licenses/by/4.0/)进行许可。 遵循许可的前提下，你可以自由地共享，包括在任何媒介上以任何形式复制、发行本作品，亦可以自由地演绎、修改、转换或以本作品为基础进行二次创作。但要求你：
+  - **署名**：应在使用本文档的全部或部分内容时候，注明原作者及来源信息。
+  - **非商业性使用**：不得用于商业出版或其他任何带有商业性质的行为。如需商业使用，请联系作者。
+  - **相同方式共享的条件**：在本文档基础上演绎、修改的作品，应当继续以知识共享署名 4.0国际许可协议进行许可。

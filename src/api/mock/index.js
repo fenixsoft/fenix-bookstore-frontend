@@ -29,6 +29,10 @@ const failure = options => {
  */
 MockJS.mock('/restful/products', 'get', o => loadJSON(o, 'products.json'))
 MockJS.mock('/restful/advertisements', 'get', o => loadJSON(o, 'advertisements.json'))
+MockJS.mock('/restful/products', 'post', o => failure(o))
+MockJS.mock('/restful/products', 'put', o => failure(o))
+MockJS.mock(/\/restful\/products\/stockpile\/.*/, 'get', o => loadJSON(o, 'stockpile.json'))
+MockJS.mock(/\/restful\/products\/stockpile\/.*/, 'patch', o => failure(o))
 MockJS.mock(/\/restful\/products\/.*/, 'get', o => {
   let json = loadJSON(o, 'products.json')
   let id = /\/restful\/products\/(.*)/.exec(o.url)[1]
@@ -40,8 +44,4 @@ MockJS.mock('/restful/accounts', 'post', o => success(o))
 MockJS.mock('/restful/accounts', 'put', o => success(o))
 MockJS.mock('/restful/settlements', 'post', o => loadJSON(o, 'settlements.json'))
 MockJS.mock(/\/restful\/pay\/.*/, 'patch', o => failure(o))
-MockJS.mock('/restful/products', 'post', o => failure(o))
-MockJS.mock('/restful/products', 'put', o => failure(o))
-MockJS.mock(/\/restful\/pay\/stockpile\/.*/, 'get', o => loadJSON(o, 'stockpile.json'))
-MockJS.mock(/\/restful\/pay\/stockpile\/.*/, 'patch', o => failure(o))
 MockJS.mock(/\/restful\/products\/.*/, 'delete', o => failure(o))

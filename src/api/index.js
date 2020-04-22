@@ -37,7 +37,7 @@ axios.interceptors.request.use(config => {
  * 将返回非200状态的HTTP CODE和无响应均调用promise reject
  */
 axios.interceptors.response.use(res => {
-  if (res.data.code && res.data.code !== 0) {
+  if (res.data && res.data.code && res.data.code !== 0) {
     return Promise.reject(Error(res.data.message))
   } else {
     return Promise.resolve(res)
