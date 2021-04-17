@@ -26,6 +26,6 @@ deploy:
   - provider: script
     keep_history: true
     skip_cleanup: true
-    script: npm run deoply:refresh-cdn
+    script: npm run deploy:refresh-cdn
     on:
       branch: master

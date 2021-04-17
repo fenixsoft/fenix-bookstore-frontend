@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
     "build:static-web": "node build/build.js --mock",
-    "deoply:refresh-cdn": "node build/qcloud.cdn.refresh.js"
+    "deploy:refresh-cdn": "node build/qcloud.cdn.refresh.js"
   },
   "dependencies": {
     "@chenfengyuan/vue-qrcode": "^1.0.2",
