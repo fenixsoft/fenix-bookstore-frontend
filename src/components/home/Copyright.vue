@@ -26,8 +26,8 @@
           <h1>社区与帮助</h1>
           <ul>
             <li><a href="">更新日志</a></li>
-            <li><a href="https://github.com/fenixsoft/fenix-bookstore-frontend">在GitHub网站上获取源码</a></li>
-            <li><a href="https://icyfenix.pub">关于Fenix's Project</a></li>
+            <li><a href="https://icyfenix.cn/exploration/projects">在GitHub网站上获取源码</a></li>
+            <li><a href="https://icyfenix.cn">关于Fenix's Project</a></li>
             <li><a href="">在Gitter.im上在线讨论</a></li>
           </ul>
         </div>

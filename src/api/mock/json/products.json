@@ -1,5 +1,56 @@
 [
   {
+    "id": 8,
+    "title": "凤凰架构：构建可靠的大型分布式系统",
+    "price": 0.0,
+    "rate": 0.0,
+    "description": "<p>这是一部以“如何构建一套可靠的分布式大型软件系统”为叙事主线的开源文档，是一幅帮助开发人员整理现代软件架构各条分支中繁多知识点的技能地图。文章《<a href='https://icyfenix.cn/introduction/about-the-fenix-project.html' target=_blank>什么是“凤凰架构”</a>》详细阐述了这部文档的主旨、目标与名字的来由，文章《<a href='https://icyfenix.cn/exploration/guide/quick-start.html' target=_blank>如何开始</a>》简述了文档每章讨论的主要话题与内容详略分布</p>",
+    "cover": "/static/cover/fenix.png",
+    "detail": "/static/desc/fenix.jpg",
+    "specifications": [
+      {
+        "id": 64,
+        "item": "ISBN",
+        "value": "9787111349662"
+      },
+      {
+        "id": 69,
+        "item": "装帧",
+        "value": "在线"
+      },
+      {
+        "id": 66,
+        "item": "页数",
+        "value": "409"
+      },
+      {
+        "id": 68,
+        "item": "出版年",
+        "value": "2020-6"
+      },
+      {
+        "id": 65,
+        "item": "书名",
+        "value": "凤凰架构"
+      },
+      {
+        "id": 68,
+        "item": "副标题",
+        "value": "构建可靠的大型分布式系统"
+      },
+      {
+        "id": 63,
+        "item": "作者",
+        "value": "周志明"
+      },
+      {
+        "id": 67,
+        "item": "出版社",
+        "value": "机械工业出版社"
+      }
+    ]
+  },
+  {
     "id": 1,
     "title": "深入理解Java虚拟机（第3版）",
     "price": 129.0,
@@ -383,52 +434,6 @@
         "id": 58,
         "item": "书名",
         "value": "深入理解Java虚拟机"
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "title": "现代软件架构探索",
-    "price": 0.0,
-    "rate": 0.0,
-    "description": "<p>这是什么？</p><p>简单地说，这是针对软件开发中不同架构、技术方案（如单体架构、微服务、服务网格、无服务架构、云原生等等）的演示程序。包含可以作为实际项目开发参考的样例代码（PetStore-Like-Project），以及作者对这些架构的使用方法、优劣理解。</p>",
-    "cover": "/static/cover/fenix.png",
-    "detail": "/static/desc/fenix.jpg",
-    "specifications": [
-      {
-        "id": 64,
-        "item": "ISBN",
-        "value": "OpenDocument"
-      },
-      {
-        "id": 69,
-        "item": "装帧",
-        "value": "在线"
-      },
-      {
-        "id": 66,
-        "item": "页数",
-        "value": "0"
-      },
-      {
-        "id": 68,
-        "item": "出版年",
-        "value": "2020-2"
-      },
-      {
-        "id": 65,
-        "item": "书名",
-        "value": "现代软件架构探索"
-      },
-      {
-        "id": 63,
-        "item": "作者",
-        "value": "周志明"
-      },
-      {
-        "id": 67,
-        "item": "出版社",
-        "value": "OpenDocument"
       }
     ]
   }
